@@ -3,6 +3,8 @@ import { Header } from "@/components/Header";
 import Hero from "@/components/Hero";
 
 type Props = {
+    //children prop can accept any valid React node, including JSX elements, 
+    //strings, numbers, arrays, fragments, or even null or undefined.
     children: React.ReactNode;
 }
 

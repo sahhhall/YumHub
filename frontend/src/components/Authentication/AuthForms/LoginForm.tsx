@@ -1,0 +1,55 @@
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useState } from "react";
+import { set } from "react-hook-form";
+import { Link } from "react-router-dom";
+
+type FormProps = {
+    onSubmit: (data: FormData) => void;
+    onClick: () => void;
+}
+
+type FormData = {
+    credential: string;
+    password: string;
+}
+
+const LoginForm = ({ onSubmit,onClick }: FormProps) => {
+    const [formData, setFormData] = useState<FormData>({
+        credential: '',
+        password: ''
+    });
+
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+        setFormData({ ...formData, [name]: value });
+    }
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        onSubmit(formData);
+    }
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <label>
+                username or mail:
+                <Input type="text" name="credential" value={formData.credential} onChange={handleInputChange} />
+            </label>
+            <br />
+            <label>
+                Password:
+                <Input type="password" name="password" value={formData.password} onChange={handleInputChange} />
+            </label>
+            <br />
+            <Button className="w-full" type="submit" >Login</Button>
+            <div className="border-t-2  mt-3 border-ligthgray">
+                    <p className="text-xs pt-1 tracking-wide">
+New to YumHub? <span className="cursor-pointer text-blue-800" onClick={onClick} >Create account</span> </p>
+                </div>
+        </form>
+        
+    );
+}
+
+export default LoginForm;

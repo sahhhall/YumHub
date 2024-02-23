@@ -1,11 +1,19 @@
+import { useState } from "react"
+import Modal from "./Authentication/ui/Modal"
 import { Button } from "./ui/button"
 
 export const MainNav = () => {
+    const [ showModal, setShowModal ] = useState<boolean>(false);
+
     return(
+        <>
         <Button
-        className="font-bold"
+        className="font-bold "
+        onClick={ () => setShowModal(true) }
         >
         Sign In
         </Button>
+        <Modal isVisible={showModal} handleClose={ () => setShowModal(false) } />
+        </>
     )
 }
