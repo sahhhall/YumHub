@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Modal from "./Authentication/ui/Modal"
+import Modal from "./Authentication/authModal/AuthModal"
 import { Button } from "./ui/button"
 
 export const MainNav = () => {

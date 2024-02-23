@@ -1,22 +1,20 @@
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { log } from "console";
 import { useState } from "react";
-import { set } from "react-hook-form";
-import { Link } from "react-router-dom";
+import PasswordInput from "../authInputs/PasswordInput";
+import EmailInput from "../authInputs/EmailInput";
 
 type FormProps = {
     onClick: () => void;
 }
 
 type FormDataType  = {
-    credential: string;
+    email: string;
     password: string;
 }
 
 const LoginForm = ({ onClick }: FormProps) => {
     const [formData, setFormData] = useState<FormDataType>({
-        credential: '',
+        email: '',
         password: ''
     });
 
@@ -33,15 +31,9 @@ const LoginForm = ({ onClick }: FormProps) => {
 
     return (
         <form onSubmit={(e) => handleSubmit(e)}>
-            <label>
-                username or mail:
-                <Input type="text" name="credential" value={formData.credential} onChange={handleInputChange} />
-            </label>
+            <EmailInput label={"mail:"} type={"email"} name={"email"} value={formData.email} changeHandler={handleInputChange} />
             <br />
-            <label>
-                Password:
-                <Input type="password" name="password" value={formData.password} onChange={handleInputChange} />
-            </label>
+            <PasswordInput label={"Password:"} type={"password"} name={"password"} value={formData.password} changeHandler={handleInputChange} />
             <br />
             <Button className="w-full" type="submit" >Login</Button>
             <div className="border-t-2  mt-3 border-ligthgray">
