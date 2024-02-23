@@ -1,21 +1,21 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { log } from "console";
 import { useState } from "react";
 import { set } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 type FormProps = {
-    onSubmit: (data: FormData) => void;
     onClick: () => void;
 }
 
-type FormData = {
+type FormDataType  = {
     credential: string;
     password: string;
 }
 
-const LoginForm = ({ onSubmit,onClick }: FormProps) => {
-    const [formData, setFormData] = useState<FormData>({
+const LoginForm = ({ onClick }: FormProps) => {
+    const [formData, setFormData] = useState<FormDataType>({
         credential: '',
         password: ''
     });
@@ -27,11 +27,12 @@ const LoginForm = ({ onSubmit,onClick }: FormProps) => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        onSubmit(formData);
+        console.log(formData);
+        
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(e) => handleSubmit(e)}>
             <label>
                 username or mail:
                 <Input type="text" name="credential" value={formData.credential} onChange={handleInputChange} />
