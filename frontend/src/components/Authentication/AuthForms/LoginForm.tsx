@@ -20,7 +20,10 @@ const LoginForm = ({ onClick }: FormProps) => {
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
-        setFormData({ ...formData, [name]: value });
+        setFormData( (prevData) => ({
+            ...prevData,
+            [ name ] : value
+        }) );
     }
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -30,9 +33,21 @@ const LoginForm = ({ onClick }: FormProps) => {
 
     return (
         <form onSubmit={(e) => handleSubmit(e)} className="w-full">
-            <EmailInput label="Email:" type="email" name="email" value={formData.email} changeHandler={handleInputChange} />
+            <EmailInput 
+                label="Email:" 
+                type="email" 
+                name="email" 
+                value={formData.email} 
+                changeHandler={handleInputChange} 
+            />
             <br />
-            <PasswordInput label="Password:" type="password" name="password" value={formData.password} changeHandler={handleInputChange} />
+            <PasswordInput
+                label="Password:"
+                type="password" 
+                name="password" 
+                value={formData.password} 
+                changeHandler={handleInputChange} 
+            />
             <br />
             <Button className="w-full" type="submit">Login</Button>
             <div className="border-t-2 mt-3 border-lightgray">
