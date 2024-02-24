@@ -1,7 +1,7 @@
 import { useState } from "react";
-import UsernameInput from "../authInputs/UsernameInput";
-import EmailInput from "../authInputs/EmailInput";
-import PasswordInput from "../authInputs/PasswordInput";
+import UsernameInput from "../AuthInputs/UsernameInput";
+import EmailInput from "../AuthInputs/EmailInput";
+import PasswordInput from "../AuthInputs/PasswordInput";
 import { Button } from "@/components/ui/button";
 
 type FormProps = {

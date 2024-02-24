@@ -1,7 +1,7 @@
 import { X } from "lucide-react";
-import LoginForm from "../authForms/LoginForm";
+import LoginForm from "../AuthForms/LoginForm";
 import { useState } from "react";
-import SignUpForm from "../authForms/SIgnUpForm";
+import SignUpForm from "../AuthForms/SIgnUpForm";
 
 type Props = {
     isVisible: boolean;

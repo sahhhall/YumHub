@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import PasswordInput from "../authInputs/PasswordInput";
-import EmailInput from "../authInputs/EmailInput";
+import PasswordInput from "../AuthInputs/PasswordInput";
+import EmailInput from "../AuthInputs/EmailInput";
 
 type FormProps = {
     onClick: () => void;
