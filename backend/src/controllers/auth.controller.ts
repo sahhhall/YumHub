@@ -1,27 +1,31 @@
 import { Request, Response } from 'express';
 import User from '../models/User.model';
 
-export const registerUser = async (req: Request, res: Response) => {
+
+interface RegisterUserRequestBody {
+    name: string;
+    email: string;
+    password: string;
+}
+export const registerUser = async (req: Request<unknown, unknown, RegisterUserRequestBody>, res: Response) => {
     try {
         const { name, email, password } = req.body;
         if ( !name || !email || !password ) {
-            res.status(400).send("please fill all");
-            return;
+            return res.status(400).json({ message: 'Please provide name, email, and password' });
         }
         
         const userExist = await User.findOne({ email: email })
         if(userExist) {
-            res.status(400).send("user already exist");
-            return;
+            return res.status(400).json({ message: 'User already exists' });
         }
 
-        const user = await User.create({
+        const newUser = await User.create({
             name: name,
             email: email,
             password: password
         })
-        if( user ){
-            res.status(201).json({user})
+        if( newUser ){
+            res.status(201).json({ user: newUser })
         }
 
     } catch (error) {
