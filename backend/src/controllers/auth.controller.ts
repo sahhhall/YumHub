@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import User from '../models/User.model';
+import { hashedPassword } from '../services/auth/passwordHasher.ts';
 
 
 interface RegisterUserRequestBody {
@@ -18,11 +19,11 @@ export const registerUser = async (req: Request<unknown, unknown, RegisterUserRe
         if(userExist) {
             return res.status(400).json({ message: 'User already exists' });
         }
-
+        const securePassword = await hashedPassword( password )
         const newUser = await User.create({
             name: name,
             email: email,
-            password: password
+            password: securePassword
         })
         if( newUser ){
             res.status(201).json({ user: newUser })
