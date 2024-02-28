@@ -6,14 +6,14 @@ interface ICustomRequest extends Request {
 }
 
 export const protectAuth = async (req: ICustomRequest, res: Response, next: NextFunction) => {
-    if (!req.headers.authorization || !req.headers.authorization.startsWith("Bearer")) {
+    
+
+    
+    if (!req.headers.cookie) {
         return res.status(401).json({ message: 'Unauthorized - No authorization header found' });
     }
-
-    const headers: string | undefined = req.headers.authorization;
-    console.log("hii");
-    var token: string | undefined = headers.split(" ")[1];
-
+    const cookies = req.headers.cookie;
+    const token = cookies?.split("=")[1];
     try {
         const { id } = JWT.verify(String(token), process.env.ACCESS_TOKEN_SECRET as string) as JWT.JwtPayload;
         console.log(id);

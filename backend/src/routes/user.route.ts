@@ -6,9 +6,14 @@ const router = express.Router();
 
 
 router.post('/register', registerUser);
-router.post('/login',  protectAuth, loginUser);
+router.post('/login',   loginUser);
 
-
+router.get('/test', protectAuth ,async ( req: any , res) => {
+    console.log(req.user);
+    return res.json({ message:"all "})
+  
+    
+} )
 
 
 
