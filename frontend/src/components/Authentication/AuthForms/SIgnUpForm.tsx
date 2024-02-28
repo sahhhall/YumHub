@@ -3,6 +3,8 @@ import UsernameInput from "../AuthInputs/UsernameInput";
 import EmailInput from "../AuthInputs/EmailInput";
 import PasswordInput from "../AuthInputs/PasswordInput";
 import { Button } from "@/components/UI/button";
+import { useNavigate } from 'react-router-dom'
+import axios from "axios";
 
 type FormProps = {
     onClick: () => void;
@@ -22,7 +24,9 @@ const SignUpForm = ({ onClick }: FormProps) => {
         password: '',
         confirmPassword: ''
     });
+    const navigate = useNavigate();
 
+   
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setFormData((prevFormData) => ({
@@ -31,13 +35,22 @@ const SignUpForm = ({ onClick }: FormProps) => {
         }))
     }
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(formData);
+        try{
+            const { data } = await axios.post("http://localhost:4001/api/register",{
+                name: formData.username,
+                email: formData.email,
+                password: formData.password
+            })
+            navigate('/user-profile') 
+        } catch (error: any) {
+            console.log( error.response.data.message);   
+        }
     }
 
     return (
-        <form onSubmit={(e) => handleSubmit(e)} className="w-full " >
+        <form method="post" onSubmit={(e) => handleSubmit(e)} className="w-full " >
             <UsernameInput
                 label="Username"
                 name="username"

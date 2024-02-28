@@ -9,8 +9,12 @@ import userRoute from './routes/user.route';
 
 
 connectDB();
+
+app.use(cors({
+    credentials:true,
+    origin: "http://localhost:4001"
+}));
 app.use(express.json());
-app.use(cors());
 app.use(cookieParser());
 
 

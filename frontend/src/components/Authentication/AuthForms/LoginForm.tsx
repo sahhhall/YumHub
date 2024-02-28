@@ -2,7 +2,8 @@ import { Button } from "@/components/UI/button";
 import { useState } from "react";
 import PasswordInput from "../AuthInputs/PasswordInput";
 import EmailInput from "../AuthInputs/EmailInput";
-
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 type FormProps = {
     onClick: () => void;
 }
@@ -17,7 +18,7 @@ const LoginForm = ({ onClick }: FormProps) => {
         email: '',
         password: ''
     });
-
+    const navigate = useNavigate();
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setFormData( (prevData) => ({
@@ -26,9 +27,18 @@ const LoginForm = ({ onClick }: FormProps) => {
         }) );
     }
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         console.log(formData);
+        try{
+            const { data } = await axios.post("http://localhost:4001/api/login",{
+                email: formData.email,
+                password: formData.password
+            })
+            navigate('/user-profile') 
+        } catch (error: any) {
+            console.log( error.response.data.message);   
+        }
     }
 
     return (
