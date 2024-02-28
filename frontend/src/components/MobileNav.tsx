@@ -1,6 +1,6 @@
 import { Menu } from "lucide-react"
-import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "./ui/sheet"
-import { Button } from "./ui/button"
+import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "./UI/sheet"
+import { Button } from "./UI/button"
 
 export const MobileNav = () => {
     return(

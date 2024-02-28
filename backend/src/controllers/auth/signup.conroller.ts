@@ -1,7 +1,9 @@
 import { Request, Response } from 'express';
 import User from '../../models/User.model';
 import { hashedPassword } from '../../services/auth/passwordHasher';
-import  signAccessToken  from '../../services/auth/jwtService';
+import { signAccessToken } from '../../services/auth/jwtService';
+import mongoose from 'mongoose';
+ '../../services/auth/jwtService';
 
 interface RegisterUserRequestBody {
     name: string;
@@ -25,10 +27,10 @@ export const registerUser = async (req: Request<unknown, unknown, RegisterUserRe
             email: email,
             password: securePassword
         })
-        const accessToken = await signAccessToken( newUser._id );
+        const accessToken = await signAccessToken( newUser?._id as mongoose.Types.ObjectId  );
 
         if( newUser ){
-            res.status(201).json({ user: accessToken })
+            res.status(201).json({ user:newUser, accessToken })
         }
 
     } catch (error) {

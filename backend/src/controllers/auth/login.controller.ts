@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import User from '../../models/User.model';
 import bcrypt from 'bcrypt';
+import  { refreshToken, signAccessToken } from '../../services/auth/jwtService';
+import mongoose from 'mongoose';
 
 interface IUloginBody {
     email: string,
@@ -20,7 +22,9 @@ export const loginUser = async (req: Request<unknown, unknown, IUloginBody>, res
             return res.status(401).json({ message: "incorrect password" })
         };
         
-        res.status(200).json({ message: "Login successful." });
+        const accessToken = await signAccessToken( user?._id as mongoose.Types.ObjectId );
+        const refrshToken = await refreshToken( user?._id as mongoose.Types.ObjectId );
+        res.status(200).json({ message: "Login successful.", user, accessToken});
 
     } catch( error ) {
         console.error('Error login user:', error);

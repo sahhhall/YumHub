@@ -1,4 +1,4 @@
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/UI/input";
 
 type PasswordInputProps = {
     label:string;
