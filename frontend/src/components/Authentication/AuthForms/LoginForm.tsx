@@ -3,7 +3,6 @@ import { useState } from "react";
 import PasswordInput from "../AuthInputs/PasswordInput";
 import EmailInput from "../AuthInputs/EmailInput";
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
 type FormProps = {
     onClick: () => void;
 }
@@ -18,7 +17,6 @@ const LoginForm = ({ onClick }: FormProps) => {
         email: '',
         password: ''
     });
-    const navigate = useNavigate();
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setFormData( (prevData) => ({
@@ -35,7 +33,8 @@ const LoginForm = ({ onClick }: FormProps) => {
                 email: formData.email,
                 password: formData.password
             })
-            navigate('/user-profile') 
+            window.location.reload();
+            return data;
         } catch (error: any) {
             console.log( error.response.data.message);   
         }

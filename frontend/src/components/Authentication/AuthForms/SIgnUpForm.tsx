@@ -44,6 +44,7 @@ const SignUpForm = ({ onClick }: FormProps) => {
                 password: formData.password
             })
             navigate('/user-profile') 
+            return data
         } catch (error: any) {
             console.log( error.response.data.message);   
         }
