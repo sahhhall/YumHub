@@ -23,12 +23,15 @@ export const loginUser = async (req: Request<unknown, unknown, IUloginBody>, res
         };
         
         const accessToken = await signAccessToken( user?._id as mongoose.Types.ObjectId );
-        
+
+        const currentDate = new Date();
+        const expiryDate = new Date(currentDate.getTime() + 10 * 24 * 60 * 60 * 1000);
+
         // httpOnly for using it only accessed and modifies in server not accessiblein client side cookies for security(XSS)
         // and samesite for another protection against CSRF attacks 
         res.cookie(String(user._id), accessToken, {
             path: '/',
-            expires: new Date(Date.now() + 1000*30 ),
+            expires: expiryDate,
             httpOnly: true,
             sameSite: 'lax'
         })

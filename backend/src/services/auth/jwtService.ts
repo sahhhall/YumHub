@@ -13,7 +13,7 @@ export const signAccessToken = async (userID: mongoose.Types.ObjectId): Promise<
         }
         const secret = process.env.ACCESS_TOKEN_SECRET as string;
         const options = {
-            expiresIn: "30s",
+            expiresIn: "10d",
             issuer: "YumHub.com",
         }
       const token: string | undefined = await JWT.sign(payload, secret, options)
