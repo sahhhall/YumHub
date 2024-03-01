@@ -2,15 +2,16 @@ import { useState } from "react"
 import Modal from "./Authentication/AuthModal/AuthModal"
 import { Button } from "./UI/button"
 import { AuthDropdown } from "./AuthDropdown/AuthDropdown";
+import { useSelector } from "react-redux";
 
 export const MainNav = () => {
     const [ showModal, setShowModal ] = useState<boolean>(false);
-    const [test, setTest ] = useState (false)
+    const {   isAuthenticated } = useSelector((state: any) => state.user);
     return(
         <>
 
         {
-           test ? <><Button
+           !isAuthenticated ? <><Button
            className="font-bold "
            onClick={ () => setShowModal(true) }
            >

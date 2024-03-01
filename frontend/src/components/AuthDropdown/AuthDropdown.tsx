@@ -1,16 +1,33 @@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger, Separator } from "@radix-ui/react-dropdown-menu";
 import { ChevronDown } from "lucide-react";
 import { CustomDropdownMenuItem } from "./CustomDropdownMenuItem";
-
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "@/redux/slices/userSlice";
+axios.defaults.withCredentials = true
 export const AuthDropdown = () => {
+    const dispatch = useDispatch();
+    const {  user } = useSelector((state: any) => state.user);
+    const sendLogout = async () => {
+        const res  = await axios.post("http://localhost:4001/api/logout", null,{
+            withCredentials: true
+        })
+        if (res.status = 200) {
+            return res
+        }else {
+            return new Error(" unable to logout ");
+        }
+    }
     const handleLogout = () => {
-        // Logic for handling logout
+        sendLogout().then(() => {
+            dispatch(logout())
+        })
     };
 
     return (
         <DropdownMenu>
             <DropdownMenuTrigger className="text-black-800 font-medium tracking-widest flex hover:bg-gray-100">
-                sahhalll <ChevronDown />
+                {user.name} <ChevronDown />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="pt-1">
                 {/* <DropdownMenuLabel>My Account</DropdownMenuLabel> */}
