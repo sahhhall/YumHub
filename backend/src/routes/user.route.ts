@@ -3,12 +3,13 @@ import { loginUser } from '../controllers/auth/login.controller';
 import { registerUser } from '../controllers/auth/signup.conroller';
 import { protectAuth } from '../middleware/auth.middleware';
 import User from '../models/User.model';
+import { logOut } from '../controllers/auth/logout.controller';
 const router = express.Router();
 
 
 router.post('/register', registerUser);
 router.post('/login',   loginUser);
-
+router.post('/logout', protectAuth, logOut);
 interface Iuser extends Request {
     user?: string;
 }
