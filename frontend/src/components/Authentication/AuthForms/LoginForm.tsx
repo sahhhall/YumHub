@@ -5,6 +5,7 @@ import { login } from '../../../redux/slices/userSlice';
 import PasswordInput from "../AuthInputs/PasswordInput";
 import EmailInput from "../AuthInputs/EmailInput";
 import axios from 'axios';
+import { GoogleLoginn } from "../GoogleAuth/GoogleAuth";
 const  API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 type FormProps = {
     onClick: () => void;
@@ -65,6 +66,7 @@ const LoginForm = ({ onClick, handleClose }: FormProps) => {
                 changeHandler={handleInputChange} 
             />
             <br />
+            <GoogleLoginn />
             <Button className="w-full" type="submit">Login</Button>
             <div className="border-t-2 mt-3 border-lightgray">
                 <p className="text-xs pt-1 tracking-wide">
