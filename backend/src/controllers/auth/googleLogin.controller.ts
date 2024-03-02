@@ -34,6 +34,7 @@ export const googleLoginAuth = async (req: Request, res: Response) => {
         // Generate access token
         const accessToken = await signAccessToken(user._id as mongoose.Types.ObjectId);
 
+        console.log(accessToken);
         
         res.cookie(String(user._id), accessToken, {
             path: '/',

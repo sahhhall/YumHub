@@ -12,9 +12,11 @@ export const AuthDropdown = () => {
     const {  user } = useSelector((state: any) => state.user);
   
     const sendLogout = async () => {
-        const res  = await axios.post(`${API_BASE_URL}/api/logout`, null,{
+        const res  = await axios.post(`${API_BASE_URL}/api/logout`,null ,{
             withCredentials: true
         })
+        console.log("whattt");
+        
         if (res.status = 200) {
             
            
