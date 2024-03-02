@@ -5,7 +5,7 @@ import PasswordInput from "../AuthInputs/PasswordInput";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from 'react-router-dom'
 import axios from "axios";
-
+const  API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 type FormProps = {
     onClick: () => void;
 }
@@ -38,7 +38,7 @@ const SignUpForm = ({ onClick }: FormProps) => {
     const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try{
-            const { data } = await axios.post("http://localhost:4001/api/register",{
+            const { data } = await axios.post(`${API_BASE_URL}/api/register`,{
                 name: formData.username,
                 email: formData.email,
                 password: formData.password

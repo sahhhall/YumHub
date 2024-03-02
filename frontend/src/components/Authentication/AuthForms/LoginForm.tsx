@@ -5,6 +5,7 @@ import { login } from '../../../redux/slices/userSlice';
 import PasswordInput from "../AuthInputs/PasswordInput";
 import EmailInput from "../AuthInputs/EmailInput";
 import axios from 'axios';
+const  API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 type FormProps = {
     onClick: () => void;
     handleClose: () => void;
@@ -33,7 +34,7 @@ const LoginForm = ({ onClick, handleClose }: FormProps) => {
         event.preventDefault();
         console.log(formData);
         try{
-            const { data } = await axios.post("http://localhost:4001/api/login",{
+            const { data } = await axios.post(`${API_BASE_URL}/api/login`,{
                 email: formData.email,
                 password: formData.password
             })

@@ -5,14 +5,14 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/redux/slices/userSlice";
 
-
+const  API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 axios.defaults.withCredentials = true
 export const AuthDropdown = () => {
     const dispatch = useDispatch();
     const {  user } = useSelector((state: any) => state.user);
   
     const sendLogout = async () => {
-        const res  = await axios.post("http://localhost:4001/api/logout", null,{
+        const res  = await axios.post(`${API_BASE_URL}/api/logout`, null,{
             withCredentials: true
         })
         if (res.status = 200) {
