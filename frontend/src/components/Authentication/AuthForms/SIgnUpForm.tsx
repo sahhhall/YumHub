@@ -2,7 +2,7 @@ import { useState } from "react";
 import UsernameInput from "../AuthInputs/UsernameInput";
 import EmailInput from "../AuthInputs/EmailInput";
 import PasswordInput from "../AuthInputs/PasswordInput";
-import { Button } from "@/components/UI/button";
+import { Button } from "@/components/ui/button";
 import { useNavigate } from 'react-router-dom'
 import axios from "axios";
 

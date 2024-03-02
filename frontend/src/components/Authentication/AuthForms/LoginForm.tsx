@@ -1,12 +1,13 @@
-import { Button } from "@/components/UI/button";
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { useSelector, useDispatch } from 'react-redux';
-import { login, logout } from '../../../redux/slices/userSlice';
+import {  useDispatch } from 'react-redux';
+import { login } from '../../../redux/slices/userSlice';
 import PasswordInput from "../AuthInputs/PasswordInput";
 import EmailInput from "../AuthInputs/EmailInput";
 import axios from 'axios';
 type FormProps = {
     onClick: () => void;
+    handleClose: () => void;
 }
 
 type FormDataType = {
@@ -14,8 +15,7 @@ type FormDataType = {
     password: string;
 }
 
-const LoginForm = ({ onClick }: FormProps) => {
-    const {  isAuthenticated } = useSelector((state: any) => state.user);
+const LoginForm = ({ onClick, handleClose }: FormProps) => {
     const dispatch = useDispatch();
     const [formData, setFormData] = useState<FormDataType>({
         email: '',
@@ -39,8 +39,7 @@ const LoginForm = ({ onClick }: FormProps) => {
             })
            
             dispatch(login(data.user));
-            console.log(data.user,"this data");
-           
+            handleClose();
             
         } catch (error: any) {
             console.log( error.response.data.message);   

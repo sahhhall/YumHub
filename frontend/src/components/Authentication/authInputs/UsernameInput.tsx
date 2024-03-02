@@ -1,4 +1,4 @@
-import { Input } from "@/components/UI/input";
+import { Input } from "@/components/ui/input";
 
 type UsernameInputProps = {
     label:string;
