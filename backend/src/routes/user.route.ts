@@ -4,9 +4,10 @@ import { registerUser } from '../controllers/auth/signup.conroller';
 import { protectAuth } from '../middleware/auth.middleware';
 import User from '../models/User.model';
 import { logOut } from '../controllers/auth/logout.controller';
+import { googleLoginAuth } from '../controllers/auth/googleLogin.controller';
 const router = express.Router();
 
-
+router.post('/googlelogin', googleLoginAuth)
 router.post('/register', registerUser);
 router.post('/login',   loginUser);
 router.post('/logout', protectAuth, logOut);
