@@ -38,13 +38,12 @@ const SignUpForm = ({ onClick }: FormProps) => {
     const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try{
-            const { data } = await axios.post(`${API_BASE_URL}/api/register`,{
+            await axios.post(`${API_BASE_URL}/api/register`,{
                 name: formData.username,
                 email: formData.email,
                 password: formData.password
             })
-            navigate('/user-profile') 
-            return data
+            navigate('/')  
         } catch (error: any) {
             console.log( error.response.data.message);   
         }

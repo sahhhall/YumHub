@@ -15,20 +15,13 @@ export const AuthDropdown = () => {
         const res  = await axios.post(`${API_BASE_URL}/api/logout`,null ,{
             withCredentials: true
         })
-        console.log("whattt");
-        
-        if (res.status = 200) {
-            
-           
-        }else {
-            return new Error(" unable to logout ");
-        }
+        if (res.status !== 200)  return new Error(" unable to logout ");
+     
     }
     const handleLogout = () => {
        
         sendLogout().then(() => {
             dispatch(logout())
-  
         })
        
        

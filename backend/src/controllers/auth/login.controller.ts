@@ -35,6 +35,8 @@ export const loginUser = async (req: Request<unknown, unknown, IUloginBody>, res
             httpOnly: true,
             sameSite: 'lax'
         })
+        
+        user.password = '';
         res.status(200).json({ message: "Login successful.", user, accessToken});
 
     } catch( error ) {

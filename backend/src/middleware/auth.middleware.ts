@@ -6,20 +6,23 @@ interface ICustomRequest extends Request {
 }
 
 export const protectAuth = async (req: ICustomRequest, res: Response, next: NextFunction) => {
-    
-
     console.log("d");
     
     if (!req.headers.cookie) {
         return res.status(401).json({ message: 'Unauthorized - No authorization header found' });
     }
-    const cookies = req.headers.cookie;
-console.log(cookies);
-
-    const parts = cookies.split(";")[1];
-    const google = parts.split("=")[1];
     
-    const token = cookies.startsWith("g") ? google : cookies?.split("=")[1]   ;
+    const cookies = req.headers.cookie;
+    console.log(cookies);
+    
+    let google: string | undefined;
+    
+    if (cookies.startsWith("g")) {
+        var parts = cookies.split(";")[1];
+        google = parts.split("=")[1]; 
+    }
+   
+    const token = cookies.startsWith("g") ? google : cookies?.split("=")[1];
     console.log(token);
     
     try {
