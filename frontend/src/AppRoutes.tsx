@@ -10,7 +10,7 @@ export const AppRoutes = () => {
     <Routes>
        
         <Route path='/' element={<Layout><HomePage></HomePage></Layout>} />
-        <Route path='/user-profile' element={<Layout> 
+        <Route path='/user/:activepage' element={<Layout> 
           <UserProfilePage />
            </Layout>} />
         <Route path='*' element={<Navigate to={'/'} />} />

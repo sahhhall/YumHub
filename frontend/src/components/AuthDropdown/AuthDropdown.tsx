@@ -4,10 +4,13 @@ import { CustomDropdownMenuItem } from "./CustomDropdownMenuItem";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/redux/slices/userSlice";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const  API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 axios.defaults.withCredentials = true
 export const AuthDropdown = () => {
+    const [ isDropDown, setIsDropDown ] = useState<boolean>(false);
     const dispatch = useDispatch();
     const {  user } = useSelector((state: any) => state.user);
   
@@ -27,16 +30,27 @@ export const AuthDropdown = () => {
        
     };
 
+    const closeDropdownMenu = () => {
+        setIsDropDown(false)
+    }
+
+    const toggleDropDown = () => {
+        setIsDropDown((prev: boolean) => !prev );
+    }
     return (
         <DropdownMenu>
          
-            <DropdownMenuTrigger className="text-black-800 font-medium tracking-widest flex hover:bg-gray-100">
+            <DropdownMenuTrigger onClick={toggleDropDown} className="text-black-800 font-medium tracking-widest flex hover:bg-gray-100"  >
                 {user.name} <ChevronDown />
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="pt-1">
+           {isDropDown && <DropdownMenuContent className="pt-1">
                 {/* <DropdownMenuLabel>My Account</DropdownMenuLabel> */}
                 <DropdownMenuSeparator />
-                <CustomDropdownMenuItem>Profile</CustomDropdownMenuItem>
+                <Link to={'/user/account-settings'}  onClick={closeDropdownMenu} >
+                <CustomDropdownMenuItem>
+                    Profile</CustomDropdownMenuItem>
+                </Link>
+               
                 <Separator />
                 <CustomDropdownMenuItem>
                     <button
@@ -46,7 +60,7 @@ export const AuthDropdown = () => {
                         Logout
                     </button>
                 </CustomDropdownMenuItem>
-            </DropdownMenuContent>
+            </DropdownMenuContent>}
         </DropdownMenu>
         
     );
