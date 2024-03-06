@@ -1,9 +1,9 @@
 import React from "react"
-
-export const AccountSettings = () => {
+import { UserProfileForm } from "@/forms/user-profile/UserProfileForm"
+export const EditProfile = () => {
     return(
-        <React.Fragment>
-            Account settings
-        </React.Fragment>
+        <div className="container">
+            <UserProfileForm />
+        </div>
     )
 }

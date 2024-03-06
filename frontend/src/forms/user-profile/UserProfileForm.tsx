@@ -1,12 +1,12 @@
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '@/components/ui/form';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { LoadingButton } from '@/components/LoadinButton';
-import { Button } from '@/components/ui/button';
+
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@radix-ui/react-select';
-import { Separator } from '@radix-ui/react-dropdown-menu';
+
 import { Link } from 'react-router-dom';
 
 const formSchema = z.object({
@@ -16,7 +16,9 @@ const formSchema = z.object({
   city: z.string().min(1, "City is required"),
   country: z.string().min(1, "Country is required"),
   state: z.string().min(1, "State is required"),
-  postalCode: z.number().min(1, "Pincode must be required")
+  postalCode: z.string().min(1, "Pincode must be required").max(8, "pinode between 1-8 numbers") ,
+  
+
 });
 
 type userFormData = z.infer<typeof formSchema>;
@@ -33,7 +35,7 @@ export const UserProfileForm = ({ onSave, isLoading }: Props) => {
 
   return (
     <Form {...form} >
-      <form onSubmit={form.handleSubmit(onSave)} className='bg-gray-50 rounded-lg'>
+      <form onSubmit={form.handleSubmit(onSave)} className=' rounded-lg'>
         <div>
           <h2 className='text-2xl ps-2 mb-1 pt-2'>User</h2>
           <FormDescription className='px-2 text-gray-500 text-xs tracking-wider'>This information will be displayed publicly so be careful what you share..</FormDescription>
@@ -50,7 +52,7 @@ export const UserProfileForm = ({ onSave, isLoading }: Props) => {
             </FormItem>
           )}
         />
-        <div className='flex mt-8  flex-col-2   md:flex-row gap-6 px-2 '>
+        <div className='flex mt-8 flex-col md:flex-row flex-col-2    gap-6 px-2 '>
         <FormField
           control={form.control}
           name="city"
@@ -60,6 +62,7 @@ export const UserProfileForm = ({ onSave, isLoading }: Props) => {
               <FormControl>
                 <Input {...field}  className='bg-white' />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -72,6 +75,7 @@ export const UserProfileForm = ({ onSave, isLoading }: Props) => {
               <FormControl>
                 <Input {...field}  className='bg-white' />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -84,7 +88,7 @@ export const UserProfileForm = ({ onSave, isLoading }: Props) => {
             <FormItem  className=' ' >
             <FormLabel>Country</FormLabel>
              <Select  onValueChange={field.onChange} defaultValue={field.value}>
-             <FormControl className=' border border-black-400 w-[13rem] '>
+             <FormControl className=' border border-black-400 md:w-44 w-[5em] '>
                   <SelectTrigger className='bg-white block text-sm py-2 rounded-sm px-4 border-black-100 text-gray-900"'>
                     <SelectValue className='' placeholder={field.value || 'India'} />
                   </SelectTrigger>
@@ -108,6 +112,7 @@ export const UserProfileForm = ({ onSave, isLoading }: Props) => {
               <FormControl>
                 <Input {...field}  className='bg-white' />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -122,13 +127,14 @@ export const UserProfileForm = ({ onSave, isLoading }: Props) => {
               <FormControl>
                 <Input {...field}  className='bg-white' />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
         {isLoading ? <LoadingButton /> : <div className='flex justify-items-end justify-end px-5 mt-3 pb-3'>
 
      <Link to={'/'}>     <button type='button' className=' rounded-md bg-white  text-sm font-semibold leading-6 text-gray-900 mr-2 border px-4 py-1 border-black-400' >Cancel</button></Link>
-        <button type='submit' className='rounded-md bg-indigo-600 px-4 py-1 font-semibold text-white tracking-wide' >Save</button>
+       {isLoading? <LoadingButton /> : <button type='submit' className='rounded-md bg-indigo-600 px-4 py-1 font-semibold text-white tracking-wide' >Save</button>}
         </div> }
       </form>
     </Form>
