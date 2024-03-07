@@ -5,6 +5,7 @@ interface IUser {
   email: string;
   password: string;
   address: IAddress;
+  picture: string;
 }
 
 interface IAddress {
@@ -12,7 +13,6 @@ interface IAddress {
   city: string;
   state: string;
   country: string;
-  postalCode: number;
 }
 
 const userSchema = new Schema<IUser>({
@@ -27,6 +27,9 @@ const userSchema = new Schema<IUser>({
     unique: true,
     lowercase: true,
   },
+  picture: {
+  type: String
+  },
   password: {
     type: String,
   },
@@ -38,15 +41,9 @@ const userSchema = new Schema<IUser>({
       type: String,
       default: "Calicut",
     },
-    state: {
-      type: String,
-    },
     country: {
       default: "India",
       type: String,
-    },
-    postalCode: {
-      type: Number,
     },
   },
 });

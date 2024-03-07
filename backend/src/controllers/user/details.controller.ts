@@ -14,6 +14,8 @@ export const UserDetails = async (req: IRequest, res: Response) => {
     }
 
     const user = await User.findById(userId).select("-password");
+    console.log(user);
+    
     return res.status(201).json({ user });
   } catch (error) {
     console.log(error);

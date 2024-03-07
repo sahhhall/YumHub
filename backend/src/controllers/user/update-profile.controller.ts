@@ -22,9 +22,7 @@ export const updateUser = async (req: IRequest, res: Response) => {
         $set: {
           "address.addressLine": addresLine,
           "address.city": city,
-          "address.state": state,
           "country.country": country,
-          "address.postalCode": postalCode,
           name: name,
         },
       },

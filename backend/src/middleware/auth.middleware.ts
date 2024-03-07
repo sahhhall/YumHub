@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { cookie } from "express-validator";
 import JWT from 'jsonwebtoken';
 
 interface ICustomRequest extends Request {
@@ -21,6 +22,7 @@ export const protectAuth = async (req: ICustomRequest, res: Response, next: Next
         var parts = cookies.split(";")[1];
         google = parts.split("=")[1]; 
     }
+   console.log(cookies);
    
     const token = cookies.startsWith("g") ? google : cookies?.split("=")[1];
     console.log(token);

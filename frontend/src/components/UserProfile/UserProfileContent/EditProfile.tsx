@@ -1,4 +1,4 @@
-import { UserProfile } from "./UserProfile"
+import { UserProfile } from "../../../forms/user-profile/UserProfile"
 
 export const EditProfile = () => {
     return(

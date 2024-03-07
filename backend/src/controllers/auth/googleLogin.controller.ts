@@ -19,7 +19,7 @@ export const googleLoginAuth = async (req: Request, res: Response) => {
             audience: CLIENT_ID,
         });
         const payload: any = ticket.getPayload();
-        const { name, email } = payload;
+        const { name, email, picture } = payload;
 
        
         let user = await User.findOne({ email });
@@ -27,7 +27,8 @@ export const googleLoginAuth = async (req: Request, res: Response) => {
         if (!user) {
             user = await User.create({
                 name: name,
-                email: email
+                email: email,
+                picture: picture
             })
         }
 
