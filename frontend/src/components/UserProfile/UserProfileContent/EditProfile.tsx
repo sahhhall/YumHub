@@ -1,9 +1,9 @@
-import React from "react"
-import { UserProfileForm } from "@/forms/user-profile/UserProfileForm"
+import { UserProfile } from "./UserProfile"
+
 export const EditProfile = () => {
     return(
-        <div className="container">
-            <UserProfileForm />
+        <div className="container ">
+           <UserProfile />
         </div>
     )
 }
