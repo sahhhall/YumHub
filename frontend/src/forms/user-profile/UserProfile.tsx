@@ -80,7 +80,7 @@ console.log("this is full user details",user);
                 </label>
                 <input
                   type="text"
-                  className="px-2 tracking-widest font-semibold "
+                  className="px-2 tracking-widest  font-semibold "
                   {...register("address", {
                     required: true,
                     minLength: 5,

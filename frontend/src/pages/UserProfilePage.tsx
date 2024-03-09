@@ -15,7 +15,7 @@ export const UserProfilePage = ( ) => {
             <div style={{maxHeight:'16em'}} className="border md:flex-col    border-black-400">
             <UserProfileTabs activepage={activepage} />
             </div>
-            <div style={{height:'36rem'}} className="border md:flex-col flex-1   flex border-black-300  bg-gray-100 sm:ms-12">
+            <div style={{height:'36rem'}} className=" md:flex-col flex-1   flex border-black-300   sm:ms-12">
                { activepage === 'account-settings' && <EditProfile />}
                { activepage === 'change-password' && <ForgetPassword />}
             </div>
