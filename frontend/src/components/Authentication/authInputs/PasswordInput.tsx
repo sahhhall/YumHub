@@ -13,7 +13,7 @@ const PasswordInput = ( props:PasswordInputProps ) => {
         <>
              <label>
                 {props.label}
-                <Input type={props.type} name={props.name} value={props.value} onChange={props.changeHandler} />
+                <Input type={props.type} autoComplete={"off"}  name={props.name} value={props.value} onChange={props.changeHandler} />
             </label>
         </>
     )

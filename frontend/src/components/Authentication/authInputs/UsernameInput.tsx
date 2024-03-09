@@ -18,7 +18,7 @@ const UsernameInput = ( props: UsernameInputProps ) => {
                 name={props.name}
                 value={props.value}
                 onChange={props.changeHandler}
-                
+                autoComplete={"off"} 
                 required
                 />
          </label>

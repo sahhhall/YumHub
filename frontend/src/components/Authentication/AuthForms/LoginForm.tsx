@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import React, { useState } from "react";
 import {  useDispatch } from 'react-redux';
 import { login } from '../../../redux/slices/userSlice';
 import PasswordInput from "../AuthInputs/PasswordInput";
 import EmailInput from "../AuthInputs/EmailInput";
 import axios from 'axios';
 import { GoogleLoginn } from "../GoogleAuth/GoogleAuth";
+import { toast } from "sonner";
 const  API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 type FormProps = {
     onClick: () => void;
@@ -42,10 +43,19 @@ const LoginForm = ({ onClick, handleClose }: FormProps) => {
            
             dispatch(login(data.user));
             handleClose();
+            toast.success(`welcome back ${data.user.name}`)
             
         } catch (error: any) {
             console.log( error.response.data.message);   
         }
+    }
+
+    const handleGuest = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+        setFormData({
+            email: 'guest@gmail.com',
+            password: '123456' 
+        })
     }
 
     return (
@@ -68,6 +78,7 @@ const LoginForm = ({ onClick, handleClose }: FormProps) => {
             <br />
             <GoogleLoginn />
             <Button className="w-full" type="submit">Login</Button>
+            <button className="w-full border border-black rounded-sm py-1 font-semibold mt-3 bg-transparent text-black" onClick={handleGuest} >As a Guest </button>
             <div className="border-t-2 mt-3 border-lightgray">
                 <p className="text-xs pt-1 tracking-wide">
                     New to YumHub? <span className="cursor-pointer text-orange-600" onClick={onClick}>Create account</span>

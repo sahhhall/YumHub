@@ -3,8 +3,10 @@ import UsernameInput from "../AuthInputs/UsernameInput";
 import EmailInput from "../AuthInputs/EmailInput";
 import PasswordInput from "../AuthInputs/PasswordInput";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from 'react-router-dom'
 import axios from "axios";
+import { login } from '../../../redux/slices/userSlice';
+import { toast } from "sonner";
+import { useDispatch } from "react-redux";
 const  API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 type FormProps = {
     onClick: () => void;
@@ -24,8 +26,8 @@ const SignUpForm = ({ onClick }: FormProps) => {
         password: '',
         confirmPassword: ''
     });
-    const navigate = useNavigate();
-
+    const dispatch = useDispatch()
+    const [ isLoading ,setIsLoading ] = useState<boolean>(false);
    
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -38,14 +40,33 @@ const SignUpForm = ({ onClick }: FormProps) => {
     const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try{
-            await axios.post(`${API_BASE_URL}/api/register`,{
+            setIsLoading(true)
+         await axios.post(`${API_BASE_URL}/api/register`,{
                 name: formData.username,
                 email: formData.email,
                 password: formData.password
+            }).then(() => {
+                setFormData({
+                    username: '',
+                    email: '',
+                    password: '',
+                    confirmPassword: '' 
+                })
+               
+                toast.success("user successfully created go back login")
+    
             })
-            navigate('/')  
+       
+            
         } catch (error: any) {
-            console.log( error.response.data.message);   
+            toast.error(error.response.data.message)
+            setIsLoading(false)
+            setFormData({
+                username: '',
+                email: '',
+                password: '',
+                confirmPassword: '' 
+            }) 
         }
     }
 
@@ -83,7 +104,7 @@ const SignUpForm = ({ onClick }: FormProps) => {
                 changeHandler={handleInputChange}
             />
             <br />
-            <Button className="w-full" type="submit" >Create Account</Button>
+             <Button disabled={isLoading} className="w-full" type="submit" >Create Account</Button>
             <div className="border-t-2  mt-3 border-ligthgray">
                 <p className="text-xs pt-1 tracking-wide">
                 Already have an account? <span className="cursor-pointer text-orange-600 " onClick={onClick}>Login</span>
