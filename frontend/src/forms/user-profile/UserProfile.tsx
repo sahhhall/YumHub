@@ -20,17 +20,14 @@ export const UserProfile = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm();
-  const { isPending, updateUser,  } = useUpdateApi();
+  const { isPending, updateUser, onSuccess } = useUpdateApi();
   const { isLoading, user } = useGetUserDetails();
   const [isEditing, setIsEditing] = useState(true);
 
   if (isLoading) {
     return <span>Loading.....</span>;
   }
-
-
 
   const handleDisableChange = () => {
     setIsEditing(!isEditing);
@@ -39,12 +36,12 @@ export const UserProfile = () => {
   // this for when click cancel button i want user info set default
   const onCancel = () => {
     setIsEditing(true);
-    reset();
   };
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    updateUser(data);
-   
+    updateUser(data).then(() => {
+      setIsEditing(true);
+    });
   };
 
   return (
@@ -67,7 +64,7 @@ export const UserProfile = () => {
             <input
               type="text"
               className="px-2  ps-4 tracking-widest font-semibold  "
-              defaultValue={"user?.email"}
+              defaultValue={user?.email}
               disabled
             />
           </div>

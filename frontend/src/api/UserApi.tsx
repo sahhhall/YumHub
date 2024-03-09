@@ -38,26 +38,22 @@ export const useUpdateApi = () => {
   const {
     mutateAsync: updateUser,
     isPending: isPending,
-    isSuccess,
+
     error,
     reset,
   } = useMutation({
-    mutationFn: updateUserReq
+    mutationFn: updateUserReq,
+    onSuccess: () => {
+      toast.success("Profile Updated");
+    },
+    onError: () => {
+      toast.error(error?.toString());
+      reset();
+    },
   });
-
-  if (error) {
-    toast.error(error.toString());
-    reset();
-  }
-
-  if (isSuccess) {
-   
-    console.log(toast.success("Profile Updated"),"1")
-  }
 
   return {
     updateUser,
     isPending,
-    isSuccess,
   };
 };
