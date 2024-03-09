@@ -38,7 +38,6 @@ export const useUpdateApi = () => {
   const {
     mutateAsync: updateUser,
     isPending: isPending,
-
     error,
     reset,
   } = useMutation({

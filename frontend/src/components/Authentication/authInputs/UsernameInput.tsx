@@ -8,7 +8,7 @@ type UsernameInputProps = {
     changeHandler: ( event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const UsernameInput = ( props: UsernameInputProps ) => {
+export const UsernameInput = ( props: UsernameInputProps ) => {
     return(
         <>
          <label>
@@ -26,4 +26,3 @@ const UsernameInput = ( props: UsernameInputProps ) => {
     )
 }
 
-export default UsernameInput;

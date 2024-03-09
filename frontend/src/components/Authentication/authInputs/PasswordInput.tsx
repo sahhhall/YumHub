@@ -8,7 +8,7 @@ type PasswordInputProps = {
     changeHandler: ( event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const PasswordInput = ( props:PasswordInputProps ) => {
+export const PasswordInput = ( props:PasswordInputProps ) => {
     return(
         <>
              <label>
@@ -20,5 +20,3 @@ const PasswordInput = ( props:PasswordInputProps ) => {
 }
 
 
-
-export default PasswordInput;

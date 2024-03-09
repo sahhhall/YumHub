@@ -9,7 +9,7 @@ type EmailInputProps = {
 }
 
 
-const EmailInput = ( props: EmailInputProps ) => {
+export const EmailInput = ( props: EmailInputProps ) => {
     return(
         <>
              <label>
@@ -20,4 +20,3 @@ const EmailInput = ( props: EmailInputProps ) => {
     )
 }
 
-export default EmailInput;
