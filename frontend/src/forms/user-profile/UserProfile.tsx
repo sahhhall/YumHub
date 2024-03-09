@@ -21,7 +21,7 @@ export const UserProfile = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { isPending, updateUser, onSuccess } = useUpdateApi();
+  const { isPending, updateUser } = useUpdateApi();
   const { isLoading, user } = useGetUserDetails();
   const [isEditing, setIsEditing] = useState(true);
 
