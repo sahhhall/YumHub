@@ -5,7 +5,7 @@ import { Button } from "./ui/button"
 export const LoadingButton = () => {
     return(
         <Button disabled>
-            <Loader2 />
+            <Loader2 className=" animate-spin" />
             Loading..
         </Button>
     )

@@ -1,10 +1,9 @@
-import { ReactEventHandler, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { useGetUserDetails, useUpdateApi } from "@/api/UserApi";
 import { Link } from "react-router-dom";
-import { AlertCircle } from "lucide-react";
-import { SubmitHandler } from 'react-hook-form';
+import { SubmitHandler } from "react-hook-form";
 
 import {
   Tooltip,
@@ -14,6 +13,8 @@ import {
 } from "@radix-ui/react-tooltip";
 import { ToolTipErr } from "./errorvalidation/ToolTIpErr";
 import { FormValues } from "@/types/userProfle/FormValues";
+import { LoadingButton } from "@/components/LoadinButton";
+import { toast } from "sonner";
 
 export const UserProfile = () => {
   const {
@@ -21,15 +22,16 @@ export const UserProfile = () => {
     handleSubmit,
     formState: { errors },
     reset,
-    
   } = useForm();
-  const { isPending, updateUser } = useUpdateApi();
+  const { isPending, updateUser,  } = useUpdateApi();
   const { isLoading, user } = useGetUserDetails();
   const [isEditing, setIsEditing] = useState(true);
 
   if (isLoading) {
     return <span>Loading.....</span>;
   }
+
+
 
   const handleDisableChange = () => {
     setIsEditing(!isEditing);
@@ -40,13 +42,11 @@ export const UserProfile = () => {
     setIsEditing(true);
     reset();
   };
-  
+
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    updateUser(data)
-  }
-
-
-console.log("this is full user details",user);
+    updateUser(data);
+   
+  };
 
   return (
     <div className="container flex justify-center ">
@@ -56,11 +56,11 @@ console.log("this is full user details",user);
           className="border rounded-full w-[9em] justify-center ms-20"
           alt="user"
         />
-        
+
         <div className="flex flex-col gap-1 pt-4">
-        <div className=" ms-28 tracking-widest font-bold ">
-          <span>{user?.name}</span>
-        </div>
+          <div className=" ms-28 tracking-widest font-bold ">
+            <span>{user?.name}</span>
+          </div>
           <div className="rounded-md pb-2 flex border-b-2">
             <label className="px-2 py-2 tracking-widest font-semibold">
               Email :
@@ -68,7 +68,7 @@ console.log("this is full user details",user);
             <input
               type="text"
               className="px-2  ps-4 tracking-widest font-semibold  "
-              defaultValue={user?.email}
+              defaultValue={"user?.email"}
               disabled
             />
           </div>
@@ -89,20 +89,18 @@ console.log("this is full user details",user);
                   name="address"
                   defaultValue={user?.address.addresLine}
                 />
-                   {!isEditing && errors.address &&
-                errors.address.type === "required"  && <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                   
-                      <ToolTipErr />
-                    </TooltipTrigger>
-                    <TooltipContent className="text-sm text-red-600 ">
-                      
-             
-
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>}
+                {!isEditing &&
+                  errors.address &&
+                  errors.address.type === "required" && (
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <ToolTipErr />
+                        </TooltipTrigger>
+                        <TooltipContent className="text-sm text-red-600 "></TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  )}
               </div>
 
               {!isEditing && errors.address?.type === "required" && (
@@ -155,32 +153,29 @@ console.log("this is full user details",user);
                   name="country"
                   defaultValue={user?.address.country}
                 />
-              {!isEditing && errors.country &&
-                errors.country.type === "required"  && <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      {" "}
-                      <ToolTipErr />
-                    </TooltipTrigger>
-                    <TooltipContent className="text-sm text-red-600 ">
-                      
-             
-                  <p className="tracking-widest text-xs text-red-500">
-                    country is required.
-                  </p>
-              
-            
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>}
+                {!isEditing &&
+                  errors.country &&
+                  errors.country.type === "required" && (
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger>
+                          {" "}
+                          <ToolTipErr />
+                        </TooltipTrigger>
+                        <TooltipContent className="text-sm text-red-600 ">
+                          <p className="tracking-widest text-xs text-red-500">
+                            country is required.
+                          </p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  )}
               </div>
-  {
-                errors.country &&
-                errors.country.type === "minLength" && (
-                  <p className="tracking-widest text-xs text-red-500">
-                    country is not valid.
-                  </p>
-                )}
+              {errors.country && errors.country.type === "minLength" && (
+                <p className="tracking-widest text-xs text-red-500">
+                  country is not valid.
+                </p>
+              )}
             </div>
 
             {isEditing ? (
@@ -192,12 +187,16 @@ console.log("this is full user details",user);
               </Button>
             ) : (
               <div className="flex flex-col mt-2 gap-1">
-                <button
-                  type="submit"
-                  className="rounded-md bg-black  px-4 py-1 font-semibold text-white tracking-wide"
-                >
-                  Save
-                </button>
+                {isPending ? (
+                  <LoadingButton />
+                ) : (
+                  <button
+                    type="submit"
+                    className="rounded-md bg-black  px-4 py-1 font-semibold text-white tracking-wide"
+                  >
+                    Save
+                  </button>
+                )}
                 <Link to="/user/account-settings"></Link>
                 <button
                   type="button"
