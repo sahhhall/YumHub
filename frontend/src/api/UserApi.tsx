@@ -42,8 +42,7 @@ export const useUpdateApi = () => {
     error,
     reset,
   } = useMutation({
-    mutationFn: updateUserReq,
-    
+    mutationFn: updateUserReq
   });
 
   if (error) {

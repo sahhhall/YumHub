@@ -6,7 +6,6 @@ export const LoadingButton = () => {
     return(
         <Button disabled>
             <Loader2 className=" animate-spin" />
-            Loading..
         </Button>
     )
 } 
