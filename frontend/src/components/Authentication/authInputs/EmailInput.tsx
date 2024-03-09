@@ -14,7 +14,7 @@ export const EmailInput = ( props: EmailInputProps ) => {
         <>
              <label>
                 {props.label}
-                <Input type={props.value} autoComplete={"off"} name={props.name} value={props.value} onChange={props.changeHandler} />
+                <Input type={props.type} autoComplete={"off"} name={props.name} value={props.value} onChange={props.changeHandler} />
             </label>
         </>
     )

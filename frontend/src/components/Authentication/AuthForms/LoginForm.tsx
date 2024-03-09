@@ -61,7 +61,7 @@ const LoginForm = ({ onClick, handleClose }: FormProps) => {
     <form onSubmit={(e) => handleSubmit(e)} className="w-full">
       <EmailInput
         label="Email:"
-        type="email"
+        type="email" 
         name="email"
         value={formData.email}
         changeHandler={handleInputChange}

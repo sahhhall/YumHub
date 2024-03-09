@@ -12,7 +12,7 @@ export const UsernameInput = ( props: UsernameInputProps ) => {
     return(
         <>
          <label>
-                {props.name}
+                {props.label}
                 <Input
                 type={props.type}
                 name={props.name}
