@@ -1,14 +1,14 @@
 import { Input } from "@/components/ui/input";
 
-type UsernameInputProps = {
-    label:string;
-    type:string;
-    name:string;
-    value:string;
-    changeHandler: ( event: React.ChangeEvent<HTMLInputElement>) => void;
-}
+// type UsernameInputProps = {
+//     label:string;
+//     type:string;
+//     name:string;
+//     value:string;
+//     changeHandler: ( event: React.ChangeEvent<HTMLInputElement>) => void;
+// }
 
-export const UsernameInput = ( props: UsernameInputProps ) => {
+export const UsernameInput = ( props: any ) => {
     return(
         <>
          <label>
