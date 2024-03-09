@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { UsernameInput } from "../AuthInputs/UsernameInput.tsx";
-import { EmailInput } from "../AuthInputs/EmailInput.tsx";
-import { PasswordInput } from "../AuthInputs/PasswordInput.tsx";
+import { UsernameInput } from "../AuthInputs/UsernameInput";
+import { EmailInput } from "../AuthInputs/EmailInput";
+import { PasswordInput } from "../AuthInputs/PasswordInput";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { toast } from "sonner";
@@ -69,33 +69,33 @@ const SignUpForm = ({ onClick }: FormProps) => {
   return (
     <form method="post" onSubmit={(e) => handleSubmit(e)} className="w-full ">
       <UsernameInput
-        label="Username"
-        name="username"
-        type="text"
+        label={"Username"}
+        name={"username"}
+        type={"text"}
         value={formData.username}
         changeHandler={handleInputChange}
       />
       <br />
       <EmailInput
-        label="email"
-        name="email"
-        type="email"
+        label={"email"}
+        name={"email"}
+        type={"email"}
         value={formData.email}
         changeHandler={handleInputChange}
       />
       <br />
       <PasswordInput
-        label="password"
-        name="password"
-        type="password"
+        label={"password"}
+        name={"password"}
+        type={"password"}
         value={formData.password}
         changeHandler={handleInputChange}
       />
       <br />
       <PasswordInput
-        label="confirm-password"
-        name="confirmPassword"
-        type="password"
+        label={"confirm-password"}
+        name={"confirmPassword"}
+        type={"password"}
         value={formData.confirmPassword}
         changeHandler={handleInputChange}
       />

@@ -2,8 +2,8 @@ import { Button } from "@/components/ui/button";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../../../redux/slices/userSlice";
-import { PasswordInput } from "../AuthInputs/PasswordInput.tsx";
-import { EmailInput } from "../AuthInputs/EmailInput.tsx";
+import { PasswordInput } from "../AuthInputs/PasswordInput";
+import { EmailInput } from "../AuthInputs/EmailInput";
 import axios from "axios";
 import { GoogleLoginn } from "../GoogleAuth/GoogleAuth";
 import { toast } from "sonner";
@@ -60,17 +60,17 @@ const LoginForm = ({ onClick, handleClose }: FormProps) => {
   return (
     <form onSubmit={(e) => handleSubmit(e)} className="w-full">
       <EmailInput
-        label="Email:"
-        type="email" 
-        name="email"
+        label={"Email:"}
+        type={"email"} 
+        name={"email"}
         value={formData.email}
         changeHandler={handleInputChange}
       />
       <br />
       <PasswordInput
-        label="Password:"
-        type="password"
-        name="password"
+        label={"Password:"}
+        type={"password"}
+        name={"password"}
         value={formData.password}
         changeHandler={handleInputChange}
       />
