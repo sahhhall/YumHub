@@ -36,14 +36,15 @@ const userSchema = new Schema<IUser>({
   address: {
     addresLine: {
       type: String,
+      default:"***",
     },
     city: {
       type: String,
-      default: "Calicut",
+      default: "***",
     },
     country: {
-      default: "India",
       type: String,
+      default: "***",
     },
   },
 });

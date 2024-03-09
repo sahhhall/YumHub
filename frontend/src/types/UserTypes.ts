@@ -5,7 +5,7 @@ export type User = {
   password: string;
   picture: string;
   address: {
-    street: string;
+    addresLine: string;
     city: string;
     state: string;
     country: string;

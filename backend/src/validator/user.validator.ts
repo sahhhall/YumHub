@@ -10,11 +10,11 @@ const handleValidatioErrors = async (req: Request, res: Response, next: NextFunc
 }
 
 export const validatorMyUserRequest = [
-    body("name")?.optional().isString().notEmpty().withMessage("Name must be string"),
-    body("addressLine").isString().notEmpty().withMessage("address line must be string"),
+    // body("name")?.optional().isString().notEmpty().withMessage("Name must be string"),
+    body("address").isString().notEmpty().withMessage("address line must be string"),
     body("city").isString().notEmpty().withMessage("City must be string"),
-    body('state').isString().notEmpty().withMessage('state must be string'),
+    // body('state').isString().notEmpty().withMessage('state must be string'),
     body("country").isString().notEmpty().withMessage("Country must be string"),
-    body("postalCode").isNumeric().notEmpty().withMessage("City must be string"),
+    // body("postalCode").isNumeric().notEmpty().withMessage("City must be string"),
     handleValidatioErrors
 ]

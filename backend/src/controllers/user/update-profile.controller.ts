@@ -7,8 +7,8 @@ interface IRequest extends Request {
 
 export const updateUser = async (req: IRequest, res: Response) => {
   try {
-    const { addresLine, city, state, country, postalCode, name } = req.body;
-    console.log("log", req.user);
+    const { address, city, country } = req.body;
+    console.log("loggggg", req.user,city,address,country);
 
     let user = await User.findById(req.user);
 
@@ -20,10 +20,9 @@ export const updateUser = async (req: IRequest, res: Response) => {
       { _id: req.user },
       {
         $set: {
-          "address.addressLine": addresLine,
+          "address.addresLine": address,
           "address.city": city,
-          "country.country": country,
-          name: name,
+          "address.country": country,
         },
       },
       { new: true }

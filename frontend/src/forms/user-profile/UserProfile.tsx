@@ -1,8 +1,19 @@
 import { ReactEventHandler, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
-import { useGetUserDetails } from "@/api/UserApi";
+import { useGetUserDetails, useUpdateApi } from "@/api/UserApi";
 import { Link } from "react-router-dom";
+import { AlertCircle } from "lucide-react";
+import { SubmitHandler } from 'react-hook-form';
+
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@radix-ui/react-tooltip";
+import { ToolTipErr } from "./errorvalidation/ToolTIpErr";
+import { FormValues } from "@/types/userProfle/FormValues";
 
 export const UserProfile = () => {
   const {
@@ -10,7 +21,9 @@ export const UserProfile = () => {
     handleSubmit,
     formState: { errors },
     reset,
+    
   } = useForm();
+  const { isPending, updateUser } = useUpdateApi();
   const { isLoading, user } = useGetUserDetails();
   const [isEditing, setIsEditing] = useState(true);
 
@@ -27,29 +40,34 @@ export const UserProfile = () => {
     setIsEditing(true);
     reset();
   };
+  
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    updateUser(data)
+  }
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault
-    console.log(e);
-    alert("succe")
-  };
+
+console.log("this is full user details",user);
 
   return (
-    <div className="container flex justify-center">
+    <div className="container flex justify-center ">
       <div className="flex flex-col pt-5 px-12">
         <img
           src={user?.picture}
-          className="border rounded-full w-[9em] justify-center ms-10"
+          className="border rounded-full w-[9em] justify-center ms-20"
           alt="user"
         />
+        
         <div className="flex flex-col gap-1 pt-4">
+        <div className=" ms-28 tracking-widest font-bold ">
+          <span>{user?.name}</span>
+        </div>
           <div className="rounded-md pb-2 flex border-b-2">
             <label className="px-2 py-2 tracking-widest font-semibold">
               Email :
             </label>
             <input
               type="text"
-              className="px-2 ps-4 tracking-widest font-semibold border-none outline-none"
+              className="px-2  ps-4 tracking-widest font-semibold  "
               defaultValue={user?.email}
               disabled
             />
@@ -62,15 +80,29 @@ export const UserProfile = () => {
                 </label>
                 <input
                   type="text"
-                  className="px-2 tracking-widest font-semibold border-none outline-none"
+                  className="px-2 tracking-widest font-semibold "
                   {...register("address", {
                     required: true,
                     minLength: 5,
                   })}
                   disabled={isEditing}
                   name="address"
-                  defaultValue={user?.address.street}
+                  defaultValue={user?.address.addresLine}
                 />
+                   {!isEditing && errors.address &&
+                errors.address.type === "required"  && <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                   
+                      <ToolTipErr />
+                    </TooltipTrigger>
+                    <TooltipContent className="text-sm text-red-600 ">
+                      
+             
+
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>}
               </div>
 
               {!isEditing && errors.address?.type === "required" && (
@@ -85,13 +117,13 @@ export const UserProfile = () => {
               )}
             </div>
             <div className="rounded-md  flex-col  flex border-b-2 pb-2">
-              <div>
+              <div className="flex">
                 <label className="px-2 tracking-widest font-semibold">
                   City:
                 </label>
                 <input
                   type="text"
-                  className="px-2 tracking-widest font-semibold border-none outline-none"
+                  className="px-2 tracking-widest font-semibold border-none outline-none w-full"
                   {...register("city", {
                     required: true,
                   })}
@@ -107,14 +139,14 @@ export const UserProfile = () => {
                 </p>
               )}
             </div>
-            <div className="border-b-2 flex rounded-md pb-2 flex-col ">
-              <div>
+            <div className="border-b-2 flex rounded-md pb-2  flex-col">
+              <div className="flex relative">
                 <label className="px-2 tracking-widest font-semibold">
                   Country:
                 </label>
                 <input
                   type="text"
-                  className="px-2 tracking-widest font-semibold border-none outline-none"
+                  className="px-2 tracking-widest  font-semibold border-none outline-none"
                   {...register("country", {
                     required: true,
                     minLength: 4,
@@ -123,16 +155,26 @@ export const UserProfile = () => {
                   name="country"
                   defaultValue={user?.address.country}
                 />
-              </div>
-
-              {!isEditing &&
-                errors.country &&
-                errors.country.type === "required" && (
+              {!isEditing && errors.country &&
+                errors.country.type === "required"  && <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      {" "}
+                      <ToolTipErr />
+                    </TooltipTrigger>
+                    <TooltipContent className="text-sm text-red-600 ">
+                      
+             
                   <p className="tracking-widest text-xs text-red-500">
                     country is required.
                   </p>
-                )}
-              {!isEditing &&
+              
+            
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>}
+              </div>
+  {
                 errors.country &&
                 errors.country.type === "minLength" && (
                   <p className="tracking-widest text-xs text-red-500">
@@ -149,10 +191,10 @@ export const UserProfile = () => {
                 Edit Profile
               </Button>
             ) : (
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col mt-2 gap-1">
                 <button
                   type="submit"
-                  className="rounded-md bg-indigo-600 px-4 py-1 font-semibold text-white tracking-wide"
+                  className="rounded-md bg-black  px-4 py-1 font-semibold text-white tracking-wide"
                 >
                   Save
                 </button>
@@ -160,7 +202,7 @@ export const UserProfile = () => {
                 <button
                   type="button"
                   onClick={onCancel}
-                  className=" rounded-md bg-white  text-sm font-semibold leading-6 text-gray-900 mr-2 border px-4 py-1 border-black-400"
+                  className=" rounded-md bg-white  text-sm font-semibold py-1 text-gray-900 mr-2 border px-4  border-black-400"
                 >
                   Cancel
                 </button>
