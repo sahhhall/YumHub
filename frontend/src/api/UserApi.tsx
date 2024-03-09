@@ -1,7 +1,7 @@
 import { User } from "@/types/UserTypes";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { Toaster, toast } from "sonner";
+import { toast } from "sonner";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 

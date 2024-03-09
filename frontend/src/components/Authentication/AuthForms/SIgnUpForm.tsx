@@ -4,9 +4,7 @@ import EmailInput from "../AuthInputs/EmailInput";
 import PasswordInput from "../AuthInputs/PasswordInput";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
-import { login } from '../../../redux/slices/userSlice';
 import { toast } from "sonner";
-import { useDispatch } from "react-redux";
 const  API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 type FormProps = {
     onClick: () => void;
@@ -26,7 +24,6 @@ const SignUpForm = ({ onClick }: FormProps) => {
         password: '',
         confirmPassword: ''
     });
-    const dispatch = useDispatch()
     const [ isLoading ,setIsLoading ] = useState<boolean>(false);
    
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
