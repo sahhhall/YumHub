@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Modal from "./Authentication/AuthModal/AuthModal.tsx"
+import Modal from "./Authentication/authModal/AuthModal.tsx"
 import { Button } from "./ui/button"
 import { AuthDropdown } from "./AuthDropdown/AuthDropdown";
 import { useSelector } from "react-redux";

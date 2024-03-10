@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { UsernameInput } from "@/components/Authentication/AuthInputs/UsernameInput";
-import { EmailInput } from "@/components/Authentication/AuthInputs/EmailInput";
-import { PasswordInput } from "@/components/Authentication/AuthInputs/PasswordInput";
+import { UsernameInput } from "@/components/Authentication/authInputs/UsernameInput";
+import { EmailInput } from "@/components/Authentication/authInputs/EmailInput";
+import { PasswordInput } from "@/components/Authentication/authInputs/PasswordInput";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { toast } from "sonner";
