@@ -4,15 +4,15 @@ const HomePage = () => {
     <div className="flex flex-col">
       <div className="bg-white text-center flex-col flex lg:flex-row  tracking-wide">
         <div className="lg:w-[50%]  flex flex-col">
-          <h1 className="md:text-7xl text-5xl  md:w-full tracking-wider font-bold mt-12">
+          <h1 className="md:text-7xl text-5xl  md:w-full tracking-wide font-bold mt-11">
             Dive into Deliciousness
           </h1>
 
-          <span className="md:text-3xl text-3xl  font-bold mt-4 tracking-wider">
+          <span className="md:text-3xl text-3xl  font-bold mt-1 tracking-wider">
             Food is just a click away
           </span>
 
-          <h1 className="text-sm font-normal pt-4  md:tracking-widest">
+          <h1 className="text-sm font-normal pt-3  md:tracking-widest">
             Explore our wide menu easily and order with just a few taps. Our 
             simple  interfacemakes <br />ordering  your  favorite  dishes <br /> super easy.
           </h1>
