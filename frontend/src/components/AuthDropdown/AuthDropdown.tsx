@@ -40,7 +40,7 @@ export const AuthDropdown = () => {
 
     return (
         <DropdownMenu onOpenChange={isDropDown => setisDropDown(isDropDown)}>
-            <DropdownMenuTrigger className="w-full sm:bg-current  sm:py-0 py-3  justify-center font-bold text-black sm:text-black-800 sm:font-medium tracking-widest flex hover:bg-gray-100" onClick={toggleDropdown}>
+            <DropdownMenuTrigger className="w-full   sm:py-0 py-3  justify-center font-bold  sm:text-black-800 sm:font-medium tracking-widest flex hover:bg-gray-100" onClick={toggleDropdown}>
                 {user.name} <ChevronDown />
             </DropdownMenuTrigger>
             {isDropDown && (
