@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import { UserProfileTabs } from "@/components/UserProfile/UserProfileTabs/UserProfileTabs"
 import { EditProfile } from "@/components/UserProfile/UserProfileContent/EditProfile"
 import { ForgetPassword } from "@/components/UserProfile/UserProfileContent/ForgotPassword"
+import { BreadCrumb } from "@/components/ui/BreadCrump"
 
 export const UserProfilePage = ( ) => {
     const  {activepage} = useParams();
@@ -10,7 +11,7 @@ export const UserProfilePage = ( ) => {
     return (
         <React.Fragment>
              {/* // <UserProfileForm  /> */}
-    
+            <BreadCrumb activePage={activepage} />
         <div className="container md:flex-row flex-col   flex gap-6 mt-6">
             <div style={{maxHeight:'16em'}} className="border md:flex-col    border-black-400">
             <UserProfileTabs activepage={activepage} />

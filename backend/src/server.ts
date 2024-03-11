@@ -10,7 +10,10 @@ import userRoute from './routes/user.route';
 
 connectDB();
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://yumhubb.onrender.com',
+    credentials: true
+}));
 app.use(express.json());
 app.use(cookieParser());
 

@@ -33,8 +33,8 @@ const Footer = () => {
                     </ul>
                 </div>
 
-                <div style={{width:'90%'}} className="ms-9 flex container mt-5 border-t border-gray-300 ">
-                    <p className="mt-3 text-gray-500 text-xs">By continuing past this page, you agree to our Terms of Service, Cookie Policy, Privacy Policy and Content Policies. All trademarks are properties of their respective owners. 2008-2024 © YumHub™ Ltd. All rights reserved.</p>
+                <div style={{width:'90%'}} className=" flex  mt-5 border-t border-gray-300 ">
+                    <p className="mt-3 text-gray-500 tracking-wideryy text-xs">By continuing past this page, you agree to our Terms of Service, Cookie Policy, Privacy Policy and Content Policies. All trademarks are properties of their respective owners. 2008-2024 © YumHub™ Ltd. All rights reserved.</p>
                 </div>
             </div>
         </div>
