@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import "dotenv/config";
+import { v2 as cloudinary } from 'cloudinary';
 import { connectDB } from './config/db.config';
 import cookieParser from 'cookie-parser';
 
@@ -9,9 +10,15 @@ import userRoute from './routes/user.route';
 
 
 connectDB();
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+})
+
 
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://yumhubb.onrender.com'],
+    origin: ['https://yumhubb.onrender.com'],
     credentials: true
 }));
 app.use(express.json());
