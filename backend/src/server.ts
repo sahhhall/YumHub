@@ -11,7 +11,7 @@ import userRoute from './routes/user.route';
 connectDB();
 
 app.use(cors({
-    origin: 'https://yumhubb.onrender.com',
+    origin: ['http://localhost:5173', 'https://yumhubb.onrender.com'],
     credentials: true
 }));
 app.use(express.json());
