@@ -1,5 +1,17 @@
 import express from "express";
-const router = express.Router();
 import { upload } from "../middleware/multer.config";
+import { myRestraurentManagment } from "../controllers/restraurant/myRestraurant.controller";
+import { protectAuth } from "../middleware/auth.middleware";
+const router = express.Router();
 
-// router.post("/", upload.single("imageFile"), restaurantManagement);
+router.post(
+  "/restraraunt",
+  upload.single("imageFile"),
+  protectAuth,
+  myRestraurentManagment
+);
+router.get("/", (req, res) => {
+  res.send("hii");
+});
+
+export default router;

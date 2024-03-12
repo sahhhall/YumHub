@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import { loginUser } from "../controllers/auth/login.controller";
-import { registerUser } from "../controllers/auth/signup.conroller";
+import { registerUser } from "../controllers/auth/signup.controller";
 import { protectAuth } from "../middleware/auth.middleware";
 import User from "../models/User.model";
 import { logOut } from "../controllers/auth/logout.controller";

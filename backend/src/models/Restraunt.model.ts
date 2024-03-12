@@ -1,6 +1,6 @@
 import mongoose, { Schema, model, Document } from 'mongoose';
 
-interface IRestraunt extends Document {
+export interface IRestraunt extends Document {
     user: Schema.Types.ObjectId;
     restaurantName: string;
     country: string;
@@ -53,10 +53,10 @@ const restrauntSchema = new Schema<IRestraunt>({
         type: Number,
         required: true
     },
-    servesCuisine: {
+    servesCuisine: [{
         type: String,
         required: true
-    },
+    }],
     menu: [menuItemsSchema],
     imageUrl: {
         type: String,
