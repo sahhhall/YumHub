@@ -21,27 +21,27 @@ export const myRestraurentManagment = async (req: IRequest, res: Response) => {
         console.log("hiii");
         
         const user = req.user;
-        const { restaurantName, country, city, telephone, openingHours, servesCuisine, imageUrl, menu } = req.body;
+        const { restaurantName, country, city, telephone, openingHours, servesCuisine, menu } = req.body;
         const restrauntExist = await Restraunt.findById(user);
         if ( restrauntExist ) {
             return res.status(409).json({ message: "user restraunt already exist" }); 
         }
-
+        console.log(menu)
         const image = req.file as Express.Multer.File
         const base64Image = Buffer.from(image.buffer).toString("base64");
-        // mimetype for type of image like png....
+        // // mimetype for type of image like png....
         const dataURI = `data:${image?.mimetype};base64,${base64Image}`;
 
         const uploadToCloudResponse = await cloudinary.uploader.upload(dataURI);
-
         const newRestraurantData: IRestraunt = await Restraunt.create({
             restaurantName: restaurantName,
             country: country,
             city: city,
+            _id: user,
             telephone: telephone,
             openingHours: openingHours,
             servesCuisine: servesCuisine,
-            imageUrl: uploadToCloudResponse,
+            imageUrl: uploadToCloudResponse.secure_url,
             menu: menu
         })
 

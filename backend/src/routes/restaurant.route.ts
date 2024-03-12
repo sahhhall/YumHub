@@ -5,13 +5,11 @@ import { protectAuth } from "../middleware/auth.middleware";
 const router = express.Router();
 
 router.post(
-  "/restraraunt",
+  "/restaurant",
   upload.single("imageFile"),
   protectAuth,
   myRestraurentManagment
 );
-router.get("/", (req, res) => {
-  res.send("hii");
-});
+
 
 export default router;
