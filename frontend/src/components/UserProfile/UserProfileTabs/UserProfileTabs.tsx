@@ -1,5 +1,5 @@
 import React from "react";
-import { Lock, User } from "lucide-react";
+import { Lock, User, Utensils } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface IProps {
@@ -29,6 +29,18 @@ export const UserProfileTabs = ({ activepage }: IProps) => {
                 <Link to="/user/change-password">
                     <div className="flex tracking-widest text-xs gap-2 font-semibold  w-full px-4 py-3">
                         <Lock  /> Change Password
+                    </div>
+                </Link>
+            )}
+
+            {activepage === 'manage-restaurant' ? (
+                <div className="flex tracking-widest text-xs gap-2 font-semibold   bg-gray-100 px-4 py-3">
+                    <Utensils />Manage Restaurant
+                </div>
+            ) : (
+                <Link to="/user/manage-restaurant">
+                    <div className="flex tracking-widest text-xs gap-2 font-semibold  w-full px-4 py-3">
+                    <Utensils /> Manage Restaurant
                     </div>
                 </Link>
             )}

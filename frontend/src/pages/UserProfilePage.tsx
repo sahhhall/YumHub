@@ -4,6 +4,7 @@ import { UserProfileTabs } from "@/components/UserProfile/UserProfileTabs/UserPr
 import { EditProfile } from "@/components/UserProfile/UserProfileContent/EditProfile"
 import { ForgetPassword } from "@/components/UserProfile/UserProfileContent/ForgotPassword"
 import { BreadCrumb } from "@/components/ui/BreadCrump"
+import { ManageRestaurant } from "@/components/UserProfile/UserProfileContent/ManageRestaurant"
 
 export const UserProfilePage = ( ) => {
     const  {activepage} = useParams();
@@ -19,6 +20,7 @@ export const UserProfilePage = ( ) => {
             <div style={{height:'36rem'}} className=" md:flex-col flex-1   flex border-black-300   sm:ms-12">
                { activepage === 'account-settings' && <EditProfile />}
                { activepage === 'change-password' && <ForgetPassword />}
+               { activepage === 'manage-restaurant' && <ManageRestaurant /> }
             </div>
         </div>
         </React.Fragment>
