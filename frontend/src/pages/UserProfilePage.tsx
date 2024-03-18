@@ -20,7 +20,10 @@ export const UserProfilePage = ( ) => {
             <div style={{height:'36rem'}} className=" md:flex-col flex-1   flex border-black-300   sm:ms-12">
                { activepage === 'account-settings' && <EditProfile />}
                { activepage === 'change-password' && <ForgetPassword />}
+               <div className=" overflow-auto" >
                { activepage === 'manage-restaurant' && <ManageRestaurant /> }
+               </div>
+            
             </div>
         </div>
         </React.Fragment>
