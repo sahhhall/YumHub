@@ -1,0 +1,29 @@
+.form-steps span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #DDE3EC;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #536387;
+    
+  }
+
+  .active-step {
+    background: #6A64F1 !important;
+    color: #FFFFFF !important;
+    
+  }
+  .step-line {
+    height: 2px;
+    background-color: #ccc; /* Default line color */
+    flex: 1;
+  }
+  
+  .step-line-active {
+    background-color: #3366ff; /* Color for active line */
+  }

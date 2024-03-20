@@ -1,0 +1,10 @@
+.form-input-restraunt {
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #DDE3EC;
+    background: #FFFFFF;
+    font-weight: 500;
+    color: #536387;
+    outline: none;
+    resize: none;
+  }
