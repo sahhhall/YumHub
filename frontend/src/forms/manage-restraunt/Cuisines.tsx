@@ -5,7 +5,7 @@ import { useFormContext } from "@/context/FormProvider";
 import thai from "../../assets/cuisines/thai.png";
 import { cuisines } from "./config/restraunt--options";
 type TFormItems = {
-  servesCuisine: [string];
+  servesCuisine: string[];
 };
 
 export const Cuisines = () => {
@@ -18,7 +18,7 @@ export const Cuisines = () => {
     defaultValues: formData,
   });
 
-  const handleOnSubmit = (data: any) => {
+  const handleOnSubmit = (data: TFormItems) => {
     alert(JSON.stringify(data));
     setSteps(steps + 1);
   };
@@ -29,46 +29,33 @@ export const Cuisines = () => {
   return (
     <div className="pt-5">
       <form onSubmit={handleSubmit(handleOnSubmit)}>
-        <div className="grid md:grid-cols-5 grid-cols-4 gap-2   ">
-          {cuisinesList.map((cuisines, index) => (
-            <div key={index}>
-              <label className="pe-1">{cuisines}</label>
-              <input
-                type="checkbox"
-                value={cuisines}
-                {...register("servesCuisine", {
-                  required: true,
-                })}
-              />
-            </div>
-          ))}
-          {errors.servesCuisine && errors.servesCuisine.type === "required" && (
-            <div>
-              <p>dsfds</p>
-            </div>
-          )}
-        </div>
         <div className="grid md:grid-cols-5 grid-cols-4 gap-2 ">
           {cuisines.map((cuisines, index) => (
-            <li className=" list-none ">
+            <li className=" list-none " key={index}>
               <input
                 type="checkbox"
-                id="react-option"
+                id={`cuisine-${index}`}
                 className="hidden peer"
                 value={cuisines.name}
                 {...register("servesCuisine", {
                   required: true,
                 })}
               />
-              <label className="inline-block  items-center justify-between  p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+              <label
+                htmlFor={`cuisine-${index}`}
+                className="inline-block  items-center justify-between  p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+              >
                 <img src={cuisines.img} className="w-12 h-12" alt="" />
-                <div className="w-full text-lg font-semibold"> {cuisines.name}</div>
+                <div className="w-full text-lg font-semibold">
+                  {" "}
+                  {cuisines.name}
+                </div>
               </label>
             </li>
           ))}
         </div>
         <button onClick={handleBack}>Back</button>
-        <Button>Next</Button>
+        <Button type="submit">Next</Button>
       </form>
     </div>
   );
