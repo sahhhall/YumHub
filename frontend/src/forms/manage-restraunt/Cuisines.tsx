@@ -9,7 +9,7 @@ type TFormItems = {
 };
 
 export const Cuisines = () => {
-  const { setSteps, steps, formData } = useFormContext();
+  const { setSteps, steps, formData, updateFormData } = useFormContext();
   const {
     register,
     handleSubmit,
@@ -18,8 +18,8 @@ export const Cuisines = () => {
     defaultValues: formData,
   });
 
-  const handleOnSubmit = (data: TFormItems) => {
-    alert(JSON.stringify(data));
+  const handleOnSubmit = (data: any) => {
+    updateFormData(JSON.parse(JSON.stringify(data)))
     setSteps(steps + 1);
   };
 
@@ -29,7 +29,7 @@ export const Cuisines = () => {
   return (
     <div className="pt-5 flex">
       <form onSubmit={handleSubmit(handleOnSubmit)}>
-        <div className="grid md:grid-cols-5 grid-cols-2 gap-2 ">
+        <div className="grid  sm:grid-cols-4 md:grid-cols-5 grid-cols-2 gap-2 ">
           {cuisines.map((cuisines, index) => (
             <li className=" list-none " key={index}>
               <input

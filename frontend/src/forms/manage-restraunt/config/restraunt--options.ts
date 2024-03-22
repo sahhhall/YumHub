@@ -1,10 +1,13 @@
 // Import images directly or use dynamic imports
-import thai from '../../../assets/cuisines/Thai.png';
-import chennai from '../../../assets/cuisines/Chennai.png';
-import kerala from '../../../assets/cuisines/Kerala.png';
-import chinese from '../../../assets/cuisines/Chinese.png';
-import italian from '../../../assets/cuisines/Italian.png';
-import japanese from '../../../assets/cuisines/Japanese.png';
+import thai from "../../../assets/cuisines/Thai.png";
+import chennai from "../../../assets/cuisines/Chennai.png";
+import kerala from "../../../assets/cuisines/Kerala.png";
+import chinese from "../../../assets/cuisines/Chinese.png";
+import italian from "../../../assets/cuisines/Italian.png";
+import japanese from "../../../assets/cuisines/Japanese.png";
+import pizza from "../../../assets/cuisines/Pizza.png";
+import burger from "../../../assets/cuisines/Burger.png";
+
 
 const cuisineImages: { [key: string]: string } = {
   Thai: thai,
@@ -12,29 +15,10 @@ const cuisineImages: { [key: string]: string } = {
   Kerala: kerala,
   Chinese: chinese,
   Italian: italian,
-  Japanese: japanese
+  Japanese: japanese,
+  Pizza: pizza,
+  Burger: burger,
 };
-
-export const cuisinesList = [
-  "Italian",
-  "Chinese",
-  "Japanese",
-  "Mexican",
-  "Thai",
-  "French",
-  "Indian",
-  "Spanish",
-  "Greek",
-  "Lebanese",
-  "Turkish",
-  "Vietnamese",
-  "Korean",
-  "Brazilian",
-  "American",
-  "German",
-  "British",
-  "Russian"
-];
 
 const cuisinesListt = [
   "Thai",
@@ -42,10 +26,12 @@ const cuisinesListt = [
   "Kerala",
   "Chinese",
   "Italian",
-  "Japanese"
+  "Japanese",
+  "Burger",
+  "Pizza",
 ];
 
 export const cuisines = cuisinesListt.map((cuisine) => ({
   name: cuisine,
-  img: cuisineImages[cuisine] || undefined
+  img: cuisineImages[cuisine] || undefined,
 }));
