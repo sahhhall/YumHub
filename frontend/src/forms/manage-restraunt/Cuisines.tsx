@@ -1,15 +1,16 @@
-import { Button } from "@/components/ui/button";
+
 import { useForm } from "react-hook-form";
-import { cuisinesList } from "./config/restraunt--options";
 import { useFormContext } from "@/context/FormProvider";
-import thai from "../../assets/cuisines/thai.png";
 import { cuisines } from "./config/restraunt--options";
+import { AlertCircle } from "lucide-react"
+import { ButtonNextBack } from "./next-back-button/ButtonNextBack";
+
 type TFormItems = {
   servesCuisine: string[];
 };
 
 export const Cuisines = () => {
-  const { setSteps, steps, formData, updateFormData } = useFormContext();
+  const { setSteps, steps, formData } = useFormContext();
   const {
     register,
     handleSubmit,
@@ -27,9 +28,9 @@ export const Cuisines = () => {
     setSteps(steps - 1);
   };
   return (
-    <div className="pt-5">
+    <div className="pt-5 flex">
       <form onSubmit={handleSubmit(handleOnSubmit)}>
-        <div className="grid md:grid-cols-5 grid-cols-4 gap-2 ">
+        <div className="grid md:grid-cols-5 grid-cols-2 gap-2 ">
           {cuisines.map((cuisines, index) => (
             <li className=" list-none " key={index}>
               <input
@@ -54,8 +55,11 @@ export const Cuisines = () => {
             </li>
           ))}
         </div>
-        <button onClick={handleBack}>Back</button>
-        <Button type="submit">Next</Button>
+        {errors.servesCuisine && errors.servesCuisine.type === 'required' && <div className="flex align-middle pt-2 gap-1">
+      <AlertCircle className="pt-1" color="#ED4337" size={'20'} /> <p className="md:tracking-widest text-red-500">please select atleast one cuisine</p>
+      </div>  }
+      <ButtonNextBack step={steps} handleBack={handleBack} />
+       
       </form>
     </div>
   );
