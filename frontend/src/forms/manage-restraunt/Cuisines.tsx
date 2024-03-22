@@ -1,8 +1,7 @@
-
 import { useForm } from "react-hook-form";
 import { useFormContext } from "@/context/FormProvider";
 import { cuisines } from "./config/restraunt--options";
-import { AlertCircle } from "lucide-react"
+import { AlertCircle } from "lucide-react";
 import { ButtonNextBack } from "./next-back-button/ButtonNextBack";
 
 type TFormItems = {
@@ -55,11 +54,15 @@ export const Cuisines = () => {
             </li>
           ))}
         </div>
-        {errors.servesCuisine && errors.servesCuisine.type === 'required' && <div className="flex align-middle pt-2 gap-1">
-      <AlertCircle className="pt-1" color="#ED4337" size={'20'} /> <p className="md:tracking-widest text-red-500">please select atleast one cuisine</p>
-      </div>  }
-      <ButtonNextBack step={steps} handleBack={handleBack} />
-       
+        {errors.servesCuisine && errors.servesCuisine.type === "required" && (
+          <div className="flex align-middle pt-2 gap-1">
+            <AlertCircle className="pt-1" color="#ED4337" size={"20"} />{" "}
+            <p className="md:tracking-widest text-red-500">
+              please select atleast one cuisine
+            </p>
+          </div>
+        )}
+        <ButtonNextBack step={steps} handleBack={handleBack} />
       </form>
     </div>
   );
