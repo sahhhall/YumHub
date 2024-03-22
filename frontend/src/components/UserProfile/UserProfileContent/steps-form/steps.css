@@ -18,6 +18,11 @@
     color: #FFFFFF !important;
     
   }
+  .success-step {
+    background:#5cb85c !important;
+    color: #FFFFFF !important;
+    
+  }
   .step-line {
     height: 2px;
     background-color: #ccc; /* Default line color */
