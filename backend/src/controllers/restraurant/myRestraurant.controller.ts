@@ -26,6 +26,7 @@ export const myRestraurentManagment = async (req: IRequest, res: Response) => {
         if ( restrauntExist ) {
             return res.status(409).json({ message: "user restraunt already exist" }); 
         }
+        console.log("hh", restaurantName, country, city, telephone, openingHours, servesCuisine, menu)
         console.log(menu)
         const image = req.file as Express.Multer.File
         const base64Image = Buffer.from(image.buffer).toString("base64");

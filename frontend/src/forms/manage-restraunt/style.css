@@ -8,3 +8,6 @@
     outline: none;
     resize: none;
   }
+.error-menu {
+  border: 1px red solid;
+}
