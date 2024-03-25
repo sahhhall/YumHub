@@ -6,32 +6,22 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const useCreateMyrestraunt = () => {
   const createaMyRestraunt = async (FormData: any) => {
-    try {
-      const response = await axios.post(
-        `${API_BASE_URL}/api/restaurant`,
-        FormData
-      );
-      console.log(response);
-      return response.data;
-    } catch (error) {
-      throw new Error("Failed to create reastraunt");
-    }
+    const response = await axios.post(
+      `${API_BASE_URL}/api/restaurant`,
+      FormData
+    );
+    console.log(response.data);
+    return response;
   };
 
-  const {
-    reset,
-    error,
-    mutateAsync: createRestaurant,
-    isPending: isPending,
-  } = useMutation({
+  const { mutateAsync: createRestaurant, isPending: isPending } = useMutation({
     mutationFn: createaMyRestraunt,
-    onSuccess: () => {
-      toast.success("Restaurant addded successfully!");
+    onSuccess: (response) => {
+      toast.success(response.data.message);
     },
-    onError: () => {
-        
-      toast.error(error?.toString());
-      reset();
+    onError: (error: any) => {
+      console.log("dsddd", error.response.data.message);
+      toast.error(error.response.data.message);
     },
   });
 

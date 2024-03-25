@@ -41,7 +41,6 @@ const [file, setFile] = useState();
 
   const onSubmit = async (data: TFormValues) => {
     const { restaurantName, country, city, telephone, openingHours, servesCuisine, menu, imageUrl } = data;
-  
     let formData = new FormData();
     formData.append("restaurantName", restaurantName  || "" );
     formData.append("country", country || "");
@@ -58,9 +57,7 @@ const [file, setFile] = useState();
     if (imageUrl) {
       formData.append("imageUrl", imageUrl[0]);
     }
-  
     console.log(formData);
-
     createRestaurant(formData);
   };
   
