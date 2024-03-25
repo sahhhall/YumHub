@@ -4,12 +4,19 @@ import { ButtonNextBack } from "./next-back-button/ButtonNextBack";
 import { Button } from "@/components/ui/button";
 import "./style.css";
 import { useCreateMyrestraunt } from "@/api/MyRestrauntApi";
+import { useState } from "react";
 type TFormValues = {
   menu: {
     name: string;
     price: string;
   }[];
-  imageUrl: FileList | null;
+  imageUrl: any;
+  restaurantName?: string;
+  city?: string;
+  country?: string;
+  telephone?: string;
+  openingHours?: string;
+  servesCuisine?: string[];
 };
 
 export const MenuSection = () => {
@@ -22,7 +29,10 @@ export const MenuSection = () => {
   } = useForm<TFormValues>({
     defaultValues: formData,
   });
+  
+const [file, setFile] = useState();
 
+ 
   const { fields, append, remove } = useFieldArray({
     name: "menu",
     control,
@@ -30,10 +40,30 @@ export const MenuSection = () => {
   const { isPending, createRestaurant } = useCreateMyrestraunt();
 
   const onSubmit = async (data: TFormValues) => {
-    updateFormData(JSON.parse(JSON.stringify(data)));
+    const { restaurantName, country, city, telephone, openingHours, servesCuisine, menu, imageUrl } = data;
+  
+    let formData = new FormData();
+    formData.append("restaurantName", restaurantName  || "" );
+    formData.append("country", country || "");
+    formData.append("city", city || "");
+    formData.append("telephone", telephone || "");
+    formData.append("openingHours", openingHours || "");
+    formData.append("servesCuisine", JSON.stringify(servesCuisine || []));
+  
+    menu.forEach((item, index) => {
+      formData.append(`menu[${index}].name`, item.name);
+      formData.append(`menu[${index}].price`, item.price);
+    });
+  
+    if (imageUrl) {
+      formData.append("imageUrl", imageUrl[0]);
+    }
+  
+    console.log(formData);
+
     createRestaurant(formData);
   };
-
+  
   const handleBack = () => {
     setSteps(steps - 1);
   };
@@ -80,15 +110,20 @@ export const MenuSection = () => {
             Add menu
           </Button>
         </div>
-        <div>
-          <label>File</label>
-          <input
-            type="file"
-            {...register("imageUrl", {
-              required: true,
-            })}
-          />
-        </div>
+        <div className="flex justify-center mt-3">
+  <input
+    {...register("imageUrl" as const, {
+      required: "Recipe picture is required",
+    })}
+    type="file"
+    name="imageUrl"
+    onChange={(event: any) => {
+      setFile( event.target.files && event.target.files[0]);
+      
+    }}
+  />
+</div>
+
         <ButtonNextBack
           isPending={isPending}
           step={steps}

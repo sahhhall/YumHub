@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post(
   "/restaurant",
-  upload.single("imageFile"),
+  upload.single("imageUrl"),
   protectAuth,
   myRestraurentManagment
 );
