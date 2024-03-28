@@ -4,7 +4,6 @@ import { ButtonNextBack } from "./next-back-button/ButtonNextBack";
 import { Button } from "@/components/ui/button";
 import "./style.css";
 import { useCreateMyrestraunt } from "@/api/MyRestrauntApi";
-import { useState } from "react";
 type TFormValues = {
   menu: {
     name: string;
@@ -20,7 +19,7 @@ type TFormValues = {
 };
 
 export const MenuSection = () => {
-  const { steps, setSteps, formData, updateFormData } = useFormContext();
+  const { steps, setSteps, formData } = useFormContext();
   const {
     handleSubmit,
     register,
@@ -30,8 +29,6 @@ export const MenuSection = () => {
     defaultValues: formData,
   });
   
-const [file, setFile] = useState();
-
  
   const { fields, append, remove } = useFieldArray({
     name: "menu",
@@ -114,12 +111,11 @@ const [file, setFile] = useState();
     })}
     type="file"
     name="imageUrl"
-    onChange={(event: any) => {
-      setFile( event.target.files && event.target.files[0]);
-      
-    }}
   />
 </div>
+{ errors.imageUrl && errors.imageUrl.type === 'required' &&
+<p className=" text-red-500 flex ">please select atleast one image</p>
+}
 
         <ButtonNextBack
           isPending={isPending}

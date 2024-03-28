@@ -1,7 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "sonner";
-import { TRestrauntFormData } from "../types/CreateRestraunt";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const useCreateMyrestraunt = () => {
@@ -20,7 +19,6 @@ export const useCreateMyrestraunt = () => {
       toast.success(response.data.message);
     },
     onError: (error: any) => {
-      console.log("dsddd", error.response.data.message);
       toast.error(error.response.data.message);
     },
   });
