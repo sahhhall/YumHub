@@ -1,38 +1,21 @@
-import { Steps } from "@/components/UserProfile/UserProfileContent/steps-form/Steps";
-import { useFormContext } from "@/context/FormProvider";
-import { Cuisines } from "@/forms/manage-restraunt/Cuisines";
-import { MenuSection } from "@/forms/manage-restraunt/MenuSection";
-import { RestrauntDetails } from "@/forms/manage-restraunt/RestrauntDetails";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { MultiStepForm } from "@/forms/manage-restraunt/MultiStepForm";
 
 export const ManageRestaurant = () => {
-  const { steps } = useFormContext();
-  return (
-    <div className="w-full">
-      <div className="w-full">
-        <Steps />
-      </div>
-      {steps === 1 && <hr className="mt-3 w-[15%] " />}
-      {steps === 2 && <hr className="mt-3 w-[50%]" />}
-      {steps === 3 && <hr className="mt-3 " />}
+ return (
+ <div >
+ <Tabs defaultValue="restaurant" className="   ">
+  <TabsList className="w-full  bg-slate-800  ">
+    <TabsTrigger className="  font-bold text-white tracking-wide " value="restaurant">My Restaurant</TabsTrigger>
+    <TabsTrigger className=" font-bold text-white tracking-wide "  value="c-restaurant">Create Restaurant</TabsTrigger>
+    
+  </TabsList>
+  <TabsContent value="restaurant">Make changes to your account here.</TabsContent>
+  <TabsContent  value="c-restaurant"> <div className="mt-5"><MultiStepForm /></div></TabsContent>
+</Tabs>
+ </div>
+ 
 
-      <div className="flex justify-center mt-5">
-        {steps === 1 && (
-          <div className="flex flex-col ">
-            <RestrauntDetails />
-          </div>
-        )}
-
-        {steps === 2 && (
-          <div className="flex flex-col ">
-            <Cuisines />
-          </div>
-        )}
-        {steps === 3 && (
-          <div className="flex flex-col">
-            <MenuSection />
-          </div>
-        )}
-      </div>
-    </div>
-  );
+ 
+ )
 };
