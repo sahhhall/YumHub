@@ -14,6 +14,7 @@ import {
 import { ToolTipErr } from "./errorvalidation/ToolTIpErr";
 import { FormValues } from "@/types/userProfle/FormValues";
 import { LoadingButton } from "@/components/LoadinButton";
+import { SpinnerLoading } from "@/components/SpinnerLoading";
 
 export const UserProfile = () => {
   const {
@@ -26,7 +27,12 @@ export const UserProfile = () => {
   const [isEditing, setIsEditing] = useState(true);
 
   if (isLoading) {
-    return <span>Loading.....</span>;
+    return (
+      <span>
+        {" "}
+        <SpinnerLoading />
+      </span>
+    );
   }
 
   const handleDisableChange = () => {
