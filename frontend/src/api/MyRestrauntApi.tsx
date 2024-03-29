@@ -1,4 +1,5 @@
-import { useMutation } from "@tanstack/react-query";
+import { TRestrauntFormData } from "@/types/CreateRestraunt";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "sonner";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -29,8 +30,20 @@ export const useCreateMyrestraunt = () => {
   };
 };
 
-// export const useGetMyRestaraunt = () => {
-//   const getRestaraunt = async () => {
-//     await axios.get()
-//   } 
-// }
+export const useGetMyRestaraunt = () => {
+  const getRestaraunt = async (): Promise<TRestrauntFormData> => {
+    return await axios.get(`${API_BASE_URL}/api/getrestaurant`, { withCredentials: true })
+    .then((res) => res.data.userRestaurant)
+  } 
+
+  const { isLoading, data }  = useQuery({
+    queryKey: ["restaurantDetails"],
+    queryFn: getRestaraunt
+  })
+console.log("dfs",data);
+
+  return {
+      isLoading,
+      restaurant: data
+  }
+}

@@ -2,7 +2,7 @@ export type TRestrauntFormData = {
   restaurantName: string;
   country: string;
   city: string;
-  telephone: number;
+  telephone: string;
   openingHours: number;
   servesCuisine: string[];
   imageUrl: string;

@@ -1,5 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MultiStepForm } from "@/forms/manage-restraunt/MultiStepForm";
+import { MyRestaurantDetails } from "./restaurant-details/MyRestaurantDetails";
 
 export const ManageRestaurant = () => {
   return (
@@ -20,7 +21,9 @@ export const ManageRestaurant = () => {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="restaurant">
-          Make changes to your account here.
+          <div>
+            <MyRestaurantDetails />
+          </div>
         </TabsContent>
         <TabsContent value="c-restaurant">
           {" "}
