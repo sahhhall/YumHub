@@ -5,7 +5,7 @@ export interface IRestraunt extends Document {
     restaurantName: string;
     country: string;
     city: string;
-    telephone: number;
+    telephone: string;
     openingHours: number;
     servesCuisine: string;
     menu: IMenu[];
@@ -46,7 +46,7 @@ const restrauntSchema = new Schema<IRestraunt>({
         required: true
     },
     telephone: {
-        type: Number,
+        type: String,
         required: true
     },
     openingHours: {

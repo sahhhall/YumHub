@@ -28,3 +28,9 @@ export const useCreateMyrestraunt = () => {
     createRestaurant,
   };
 };
+
+// export const useGetMyRestaraunt = () => {
+//   const getRestaraunt = async () => {
+//     await axios.get()
+//   } 
+// }

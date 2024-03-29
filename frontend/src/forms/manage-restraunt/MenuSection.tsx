@@ -28,8 +28,7 @@ export const MenuSection = () => {
   } = useForm<TFormValues>({
     defaultValues: formData,
   });
-  
- 
+
   const { fields, append, remove } = useFieldArray({
     name: "menu",
     control,
@@ -37,34 +36,44 @@ export const MenuSection = () => {
   const { isPending, createRestaurant } = useCreateMyrestraunt();
 
   const onSubmit = async (data: TFormValues) => {
-    const { restaurantName, country, city, telephone, openingHours, servesCuisine, menu, imageUrl } = data;
+    const {
+      restaurantName,
+      country,
+      city,
+      telephone,
+      openingHours,
+      servesCuisine,
+      menu,
+      imageUrl,
+    } = data;
     let formData = new FormData();
-    formData.append("restaurantName", restaurantName  || "" );
+    formData.append("restaurantName", restaurantName || "");
     formData.append("country", country || "");
     formData.append("city", city || "");
     formData.append("telephone", telephone || "");
     formData.append("openingHours", openingHours || "");
     formData.append("servesCuisine", JSON.stringify(servesCuisine || []));
-  
+
     menu.forEach((item, index) => {
-      formData.append(`menu[${index}].name`, item.name);
-      formData.append(`menu[${index}].price`, item.price);
+      formData.append(`menu[${index}]`, item.name || "");
+
+      formData.append(`menu[${index}]`, item.price || "");
     });
-  
+
     if (imageUrl) {
       formData.append("imageUrl", imageUrl[0]);
     }
     console.log(formData);
     createRestaurant(formData);
   };
-  
+
   const handleBack = () => {
     setSteps(steps - 1);
   };
 
   return (
     <div className="flex">
-      <form onSubmit={handleSubmit(onSubmit)} >
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid md:grid-row-2 ">
           {fields.map((field, index) => (
             <div className="flex gap-2" key={field.id}>
@@ -105,17 +114,17 @@ export const MenuSection = () => {
           </Button>
         </div>
         <div className="flex justify-center mt-3">
-  <input
-    {...register("imageUrl" as const, {
-      required: "Recipe picture is required",
-    })}
-    type="file"
-    name="imageUrl"
-  />
-</div>
-{ errors.imageUrl && errors.imageUrl.type === 'required' &&
-<p className=" text-red-500 flex ">please select atleast one image</p>
-}
+          <input
+            {...register("imageUrl" as const, {
+              required: "Recipe picture is required",
+            })}
+            type="file"
+            name="imageUrl"
+          />
+        </div>
+        {errors.imageUrl && errors.imageUrl.type === "required" && (
+          <p className=" text-red-500 flex ">please select atleast one image</p>
+        )}
 
         <ButtonNextBack
           isPending={isPending}
