@@ -11,9 +11,9 @@ connectDB();
 
 
 app.use(cors({
-    origin: ['https://yumhubb.onrender.com','http://localhost:5173'],
+    origin: ['https://yumhubb.onrender.com', 'http://localhost:5173', 'https://yumhub.vercel.app'],
     credentials: true,
-    methods:['GET', 'POST', 'PUT', 'DELETE'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 app.use(express.json());

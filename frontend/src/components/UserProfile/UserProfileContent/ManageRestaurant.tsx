@@ -1,8 +1,10 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MultiStepForm } from "@/forms/manage-restraunt/MultiStepForm";
 import { MyRestaurantDetails } from "./restaurant-details/MyRestaurantDetails";
+import { useGetMyRestaraunt } from "@/api/MyRestrauntApi";
 
 export const ManageRestaurant = () => {
+  const { restaurant } = useGetMyRestaraunt();
   return (
     <div>
       <Tabs defaultValue="restaurant" className="   ">
@@ -17,18 +19,25 @@ export const ManageRestaurant = () => {
             className=" font-bold text-white tracking-wide "
             value="c-restaurant"
           >
-            Create Restaurant
+            {restaurant ? <p>Update Restaurant</p> : <p>Create Restaurant</p>}
           </TabsTrigger>
         </TabsList>
         <TabsContent value="restaurant">
           <div>
-            <MyRestaurantDetails />
+            {restaurant ? (
+              <MyRestaurantDetails />
+            ) : (
+              <div>not registered a restaurant!!!!</div>
+            )}
           </div>
         </TabsContent>
         <TabsContent value="c-restaurant">
-          {" "}
           <div className="mt-5">
-            <MultiStepForm />
+            {restaurant ? (
+              <div>here editing opiton todoo!!!!!!!</div>
+            ) : (
+              <MultiStepForm />
+            )}
           </div>
         </TabsContent>
       </Tabs>

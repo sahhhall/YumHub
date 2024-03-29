@@ -1,5 +1,6 @@
 import { useGetMyRestaraunt } from "@/api/MyRestrauntApi";
 import { SpinnerLoading } from "@/components/SpinnerLoading";
+import { RestaurantDetails } from "@/forms/user-restaurant-view-update/RestaurantDetails";
 
 export const MyRestaurantDetails = () => {
   const { isLoading, restaurant } = useGetMyRestaraunt();
@@ -9,9 +10,8 @@ export const MyRestaurantDetails = () => {
       {isLoading ? (
         <SpinnerLoading />
       ) : (
-        <div>
-          <p>{restaurant?.city}</p>
-          <img src={restaurant?.imageUrl} alt="" />
+        <div className="flex items-center justify-center flex-col">
+          <RestaurantDetails restaurant={restaurant} />
         </div>
       )}
     </>
