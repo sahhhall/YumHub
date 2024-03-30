@@ -87,7 +87,7 @@ export const RestrauntDetails = () => {
         </div>
         <div>
           <label className="px-2 tracking-widest font-semibold flex">
-            openingHours
+          Delivery time (1Km/minute)
           </label>
           <input
             type="text"

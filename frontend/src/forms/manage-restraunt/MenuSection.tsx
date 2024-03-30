@@ -55,10 +55,13 @@ export const MenuSection = () => {
     formData.append("servesCuisine", JSON.stringify(servesCuisine || []));
 
     menu.forEach((item, index) => {
-      formData.append(`menu[${index}]`, item.name || "");
-
-      formData.append(`menu[${index}]`, item.price || "");
-    });
+      const menuItem = {
+          name: item.name || "",
+          price: item.price || ""
+      };
+      formData.append(`menu[${index}]`, JSON.stringify(menuItem));
+  });
+  
 
     if (imageUrl) {
       formData.append("imageUrl", imageUrl[0]);

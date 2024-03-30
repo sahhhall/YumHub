@@ -48,9 +48,10 @@ export const RestaurantDetails = ({ restaurant }: TProps) => {
           />
 
           <img src={restaurant?.imageUrl} alt={restaurant?.restaurantName} />
-          <Button  onClick={() => setIsDisabled(!isDisabled)} >Edit</Button>
+     
         </div>
       </form>
+      <Button  onClick={() => setIsDisabled(!isDisabled)} >Edit</Button>
     </>
   );
 };

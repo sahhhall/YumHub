@@ -44,12 +44,11 @@ export const myRestraurentManagment = async (req: IRequest, res: Response) => {
       servesCuisine,
       menu
     );
-    console.log(menu);
+    console.log(menu.map((menu:any)=> JSON.parse(menu)));
     const image = req.file as Express.Multer.File;
     const base64Image = Buffer.from(image.buffer).toString("base64");
     // // mimetype for type of image like png....
     const dataURI = `data:${image?.mimetype};base64,${base64Image}`;
-
     const uploadToCloudResponse = await cloudinary.uploader.upload(dataURI);
     const newRestraurantData: IRestraunt = await Restraunt.create({
       restaurantName: restaurantName,
@@ -60,7 +59,7 @@ export const myRestraurentManagment = async (req: IRequest, res: Response) => {
       openingHours: openingHours,
       servesCuisine: servesCuisine,
       imageUrl: uploadToCloudResponse.secure_url,
-      menu: menu,
+      menu: menu.map((menu:any)=> JSON.parse(menu)),
     });
     
     return res
