@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import AdHero from "../assets/hero1.png";
 import { ChevronRight } from "lucide-react";
 const HomePage = () => {
