@@ -20,7 +20,7 @@ const HomePage = () => {
           <h1 className=" tracking-tighter font-thin leading-3  text-6xl mt-12 animate-out ">
             Click, click, eat.
           </h1>
-          <div className="mt-14 ps-8 ">
+          <div className="mt-14  ">
           <button className="bg-black text-white rounded-sm  tracking-wide py-3 font-semibold px-7">Explore Now</button>
           <button className="bg-white  py-2 rounded-sm  px-7 "> <p className="flex tracking-normal font-semibold">Learn More <ChevronRight /></p> </button>
           </div>
