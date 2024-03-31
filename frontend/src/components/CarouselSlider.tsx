@@ -1,30 +1,37 @@
-
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel"
+} from "@/components/ui/carousel";
 
-export const CarouselSlider = () => {
+type TProps = {
+  files: any;
+};
+export const CarouselSlider = ({ files }: TProps) => {
+  console.log("here waht i reciving", files);
   return (
     <Carousel
       opts={{
         align: "start",
       }}
-      className="w-full max-w-sm"
+      className="w-full "
     >
       <CarouselContent>
-        {Array.from({ length: 5 }).map((_, index) => (
-          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-            <div className="p-1">
-              <Card>
-                <CardContent className="flex aspect-square items-center justify-center p-6">
-                  <span className="text-3xl font-semibold">{index + 1}</span>
-                </CardContent>
-              </Card>
+        {files.map((arr: any, index: number) => (
+          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
+            <div className="  flex-col justify-center align-middle items-center mt-7 ">
+              {/* <span className="text-3xl font-semibold">{index + 1}</span> */}
+              <div className=" flex items-center flex-col">
+                <img
+                  src={arr.img}
+                  style={{ height: "6rem", width: "6.5rem" }}
+                  alt={"df"}
+                />
+                <span className="tracking-widest font-semibold text-slate-700 ">{arr.name}</span>
+              </div>
             </div>
           </CarouselItem>
         ))}
@@ -32,5 +39,5 @@ export const CarouselSlider = () => {
       <CarouselPrevious />
       <CarouselNext />
     </Carousel>
-  )
-}
+  );
+};

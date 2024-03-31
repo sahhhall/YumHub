@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
 import AdHero from "../assets/hero1.png";
 import { ChevronRight } from "lucide-react";
 const HomePage = () => {
+  
   return (
     <div className="flex flex-col">
       <div className="bg-white text-center flex-col flex lg:flex-row  tracking-wide">
@@ -21,7 +23,8 @@ const HomePage = () => {
             Click, click, eat.
           </h1>
           <div className="mt-14  ">
-          <button className="bg-black text-white rounded-sm  tracking-wide py-3 font-semibold px-7">Explore Now</button>
+            <Link to='/discover' >          <button className="bg-black text-white rounded-sm  tracking-wide py-3 font-semibold px-7">Explore Now</button></Link>
+
           <button className="bg-white  py-2 rounded-sm  px-7 "> <p className="flex tracking-normal font-semibold">Learn More <ChevronRight /></p> </button>
           </div>
         
