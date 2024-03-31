@@ -32,6 +32,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         </GoogleOAuthProvider>
       </QueryClientProvider>
     </Router>
-    ;
   </React.StrictMode>
 );
