@@ -57,7 +57,7 @@ export const AuthDropdown = () => {
         loaction.pathname === "/search") && (
         <Link to="/search">
           <button
-            className={`flex pe-6 gap-2 font-semibold ${
+            className={`md:flex  hidden   pe-6 gap-2 font-semibold hover:text-orange-500 ${
               loaction.pathname === "/search" ? "text-orange-500" : "text-black"
             } `}
           >

@@ -29,7 +29,7 @@ export const CarouselSlider = ({ files }: TProps) => {
                   style={{ height: "6rem", width: "6.5rem" }}
                   alt={"df"}
                 />
-                <span className="tracking-widest font-semibold text-slate-700 ">{arr.name}</span>
+                <span className=" md:tracking-widest text-sm font-semibold text-slate-700 ">{arr.name}</span>
               </div>
             </div>
           </CarouselItem>
