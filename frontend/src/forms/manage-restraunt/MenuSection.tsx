@@ -16,6 +16,8 @@ type TFormValues = {
   telephone?: string;
   openingHours?: string;
   servesCuisine?: string[];
+  latitude?: number ; 
+  longitude?: number ;
 };
 
 export const MenuSection = () => {
@@ -45,6 +47,8 @@ export const MenuSection = () => {
       servesCuisine,
       menu,
       imageUrl,
+      latitude,
+      longitude
     } = data;
     let formData = new FormData();
     formData.append("restaurantName", restaurantName || "");
@@ -53,7 +57,8 @@ export const MenuSection = () => {
     formData.append("telephone", telephone || "");
     formData.append("openingHours", openingHours || "");
     formData.append("servesCuisine", JSON.stringify(servesCuisine || []));
-
+    formData.append("latitude", latitude as any);
+    formData.append("longitude", longitude as any )
     menu.forEach((item, index) => {
       const menuItem = {
           name: item.name || "",

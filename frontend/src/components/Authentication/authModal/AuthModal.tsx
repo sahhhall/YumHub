@@ -14,7 +14,7 @@ const Modal = ({ isVisible, handleClose }: Props) => {
     const [ signUpForm, setSignUpForm ] = useState<boolean>(false)
     
     return (
-        <div className=" fixed mx-auto my-auto   inset-0 bg-black  backdrop-blur-md bg-opacity-50 flex justify-center items-center">
+        <div className=" fixed mx-auto my-auto   inset-0 bg-black  backdrop-blur-md bg-opacity-50 flex justify-center items-center z-10">
             <div className="  bg-white flex relative rounded-lg  p-16 w-[27rem] ">
                 <button className="absolute top-0 right-0 m-4 " onClick={() => handleClose()}>< X /></button>
                 {!signUpForm ? <LoginForm  handleClose={() => handleClose()}  onClick={() => { setSignUpForm(true)  }}  />: <SignUpForm onClick={() => {setSignUpForm(false)}} />}
