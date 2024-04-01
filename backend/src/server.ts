@@ -5,7 +5,7 @@ import { connectDB } from './config/db.config';
 import cookieParser from 'cookie-parser';
 const app = express();
 import userRoute from './routes/user.route';
-import restaurantRouter from './routes/restaurant.route';
+import restaurantRouter from './routes/myRestaurant.route';
 
 connectDB();
 

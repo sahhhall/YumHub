@@ -1,8 +1,8 @@
 import express from "express";
 import { upload } from "../middleware/multer.config";
-import { myRestraurentManagment } from "../controllers/restraurant/myRestraurant.controller";
+import { myRestraurentManagment } from "../controllers/myrestraurant/myRestraurant.controller";
 import { protectAuth } from "../middleware/auth.middleware";
-import { getMyRestaurant } from "../controllers/restraurant/getRestraurant.controller";
+import { getMyRestaurant } from "../controllers/myrestraurant/getRestraurant.controller";
 const router = express.Router();
 
 

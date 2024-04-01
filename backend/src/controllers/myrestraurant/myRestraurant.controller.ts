@@ -19,7 +19,9 @@ interface IRequest extends Request {
 export const myRestraurentManagment = async (req: IRequest, res: Response) => {
   try {
     console.log("hiii");
-
+    if ( !req.body.menu ) {
+      return res.status(404).json({ message: "please add atleast one menu" })
+    }
     const user = req.user;
     const {
       restaurantName,
@@ -29,6 +31,8 @@ export const myRestraurentManagment = async (req: IRequest, res: Response) => {
       openingHours,
       servesCuisine,
       menu,
+      latitude,
+      longitude
     } = req.body;
     const restrauntExist = await Restraunt.findById(user);
     if (restrauntExist) {
@@ -42,8 +46,11 @@ export const myRestraurentManagment = async (req: IRequest, res: Response) => {
       telephone,
       openingHours,
       servesCuisine,
-      menu
+      menu,
+      latitude,
+      longitude
     );
+    
     console.log(menu.map((menu:any)=> JSON.parse(menu)));
     const image = req.file as Express.Multer.File;
     const base64Image = Buffer.from(image.buffer).toString("base64");
@@ -60,8 +67,11 @@ export const myRestraurentManagment = async (req: IRequest, res: Response) => {
       servesCuisine: servesCuisine,
       imageUrl: uploadToCloudResponse.secure_url,
       menu: menu.map((menu:any)=> JSON.parse(menu)),
+      location: {
+        type: "Point",
+        coordinates: [parseFloat(longitude), parseFloat(latitude)]
+      }
     });
-    
     return res
       .status(201)
       .json({

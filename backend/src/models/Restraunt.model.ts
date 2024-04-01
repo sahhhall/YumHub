@@ -9,8 +9,11 @@ export interface IRestraunt extends Document {
     openingHours: number;
     servesCuisine: string;
     menu: IMenu[];
-    imageUrl: string
-
+    imageUrl: string;
+    location: {
+        type: string;
+        coordinates: number[];
+    };
 }
 
 interface IMenu  {
@@ -28,6 +31,7 @@ const menuItemsSchema = new Schema<IMenu>({
         required: true
     }
 })
+
 const restrauntSchema = new Schema<IRestraunt>({
     user: {
         type: Schema.Types.ObjectId,
@@ -61,9 +65,16 @@ const restrauntSchema = new Schema<IRestraunt>({
     imageUrl: {
         type: String,
         required: true
+    },
+    location: {
+        type: { type: String, default: 'Point' },
+        coordinates: {
+            type: [Number],
+            required: true
+        }
     }
 }, { timestamps: true });
 
-
+restrauntSchema.index({ location: "2dsphere" });
 const Restraunt = model<IRestraunt>("Restaurant", restrauntSchema);
 export default Restraunt;
