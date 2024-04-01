@@ -5,8 +5,8 @@ import { connectDB } from './config/db.config';
 import cookieParser from 'cookie-parser';
 const app = express();
 import userRoute from './routes/user.route';
-import restaurantRouter from './routes/myRestaurant.route';
-
+import myRestaurantRouter from './routes/myRestaurant.route';
+import restaurantRouter from './routes/restaurant.route';
 connectDB();
 
 
@@ -21,8 +21,8 @@ app.use(cookieParser());
 
 
 app.use('/api/', userRoute);
+app.use('/api/', myRestaurantRouter);
 app.use('/api/', restaurantRouter);
-
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
     console.log(`server started on ${port}`);
