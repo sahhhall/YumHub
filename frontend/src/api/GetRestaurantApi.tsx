@@ -59,3 +59,13 @@ export const useGetRestaurantLocation = (
   });
   return { isLoading, location: data };
 };
+
+
+
+const useGetRestaurantwithoutLocation = async () => {
+    const getRestaraunt = async () => {
+      return  await axios.get(`${API_BASE_URL}/api/all-stores`).then((response)=>{
+            response.data
+        })
+    }
+}
