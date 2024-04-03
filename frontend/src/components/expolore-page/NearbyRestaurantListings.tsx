@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useGetNearbyRestaurants } from "@/api/GetRestaurantApi";
 import { handleLocationClick } from "@/utils/getLocation";
+import { RestaurantCardSlider } from "./RestaurantCardSlider";
+import { TRestaurant } from "@/types/Restaurant";
 
 export const NearbyRestaurantListings = () => {
-  const [restaurantsData, setRestaurantsData] = useState([]);
-
+  const [restaurantsData, setRestaurantsData] = useState<TRestaurant[]>([]);
   useEffect(() => {
     getLocationAndFetchRestaurants();
   }, []);
@@ -33,12 +34,7 @@ export const NearbyRestaurantListings = () => {
       <h1 className="md:text-xl text-xs font-extrabold tracking-wide">
         All Restaurants Nearby
       </h1>
-      {restaurantsData.map((restaurant: any, index) => (
-        <div key={index}>
-          <h1>{restaurant.restaurantName}</h1>
-          {/* Display other restaurant details as needed */}
-        </div>
-      ))}
+    <RestaurantCardSlider restaurantsData={restaurantsData} />
       <hr className="mt-20" />
     </div>
   );
