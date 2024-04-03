@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import "./style.css";
-import { RestaurantCard } from "../RestaurantCard";
+import { RestaurantCard } from "./RestaurantCard";
 
 export const RestaurantCardSlider = ({ restaurantsData }: any) => {
   const carousel = useRef(null);
@@ -16,17 +16,18 @@ export const RestaurantCardSlider = ({ restaurantsData }: any) => {
   }, [restaurantsData]);
   return (
     <>
-      <motion.div className="carousel">
+      <motion.div className="carousel mt-4">
         <motion.div
           drag="x"
           dragConstraints={{ right: 0, left: width - 40 }}
-          className="inner-carousel"
-          whileTap={{ boxShadow: "0px 0px 15px rgba(0,0,0,0.2)" }}
+          className=" flex gap-3 md:flex"
           ref={carousel}
         >
           {restaurantsData.map((restaurant: any, index: number) => (
-            <motion.div key={index} className="item">
-              <RestaurantCard restaurant={restaurant} />
+            <motion.div key={index} className="item "><button>
+              <RestaurantCard   restaurant={restaurant} />
+            </button>
+
             </motion.div>
           ))}
         </motion.div>

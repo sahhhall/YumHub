@@ -30,7 +30,7 @@ export const NearbyRestaurantListings = () => {
   }, [restaurants]);
 
   return (
-    <div className="container">
+    <div className="md:container">
       <h1 className="md:text-xl text-xs font-extrabold tracking-wide">
         All Restaurants Nearby
       </h1>

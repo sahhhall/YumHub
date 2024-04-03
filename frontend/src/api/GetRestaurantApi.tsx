@@ -40,7 +40,8 @@ export const useGetRestaurantLocation = (
       console.log(data);
       if (data.status.code === 200) {
         console.log("results:", data.results);
-        return data.results[0].formatted;
+        const responseData =  data.results[0].formatted;
+          return responseData.split('-')[0]
       } else {
         throw new Error("Error fetching location information");
       }
