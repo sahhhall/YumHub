@@ -4,8 +4,8 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const APIkey = import.meta.env.VITE_API_OPENCAGEDATA;
 
 export const useGetNearbyRestaurants = () => {
-  const sentGeoLocation = async (res: any) => {
-    const response = await axios.post(`${API_BASE_URL}/api/nearest-store`, res);
+  const sentGeoLocation = async (location: any) => {
+    const response = await axios.post(`${API_BASE_URL}/api/nearest-store`, location);
     return response.request.response;
   };
   const {
@@ -22,6 +22,8 @@ export const useGetNearbyRestaurants = () => {
     restaurants: data,
   };
 };
+
+
 
 
 export const useGetRestaurantLocation = (
