@@ -1,0 +1,16 @@
+.card-container img {
+    max-width: 21rem ;
+    max-height: 17rem ;
+}
+.card-container img {
+    width: 100%;
+}
+
+
+
+@media screen and (max-width: 666px){
+    .card-container img {
+        max-width: 12rem !important;
+        max-height:  11rem !important;
+    }
+}

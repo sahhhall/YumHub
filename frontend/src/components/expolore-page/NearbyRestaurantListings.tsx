@@ -42,11 +42,11 @@ export const NearbyRestaurantListings = () => {
     if (restaurants) {
       const data = JSON.parse(restaurants);
       setRestaurantsData(data.restaurants);
-    }else if ( restaurantsDetails) {
-      console.log("here",restaurantsDetails)
-      setRestaurantsData(restaurantsDetails.restaraunts)
+    } else if (restaurantsDetails) {
+      console.log("here", restaurantsDetails);
+      setRestaurantsData(restaurantsDetails.restaraunts);
     }
-  }, [restaurants,restaurantsDetails]);
+  }, [restaurants, restaurantsDetails]);
 
   return (
     <div className="md:container">
@@ -61,7 +61,6 @@ export const NearbyRestaurantListings = () => {
           </p>
         </div>
       </div>
-
       <RestaurantCardSlider restaurantsData={restaurantsData} />
       <hr className="mt-20" />
     </div>

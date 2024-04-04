@@ -8,5 +8,5 @@ export type TRestaurant = {
     imageUrl: string;
     menu: { name: string; price: number }[];
     distance: number,
-    location: unknown
+    location: any
 }
