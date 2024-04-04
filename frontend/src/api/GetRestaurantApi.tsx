@@ -41,7 +41,6 @@ export const useGetRestaurantLocation = (
 
       console.log(data);
       if (data.status.code === 200) {
-        console.log("results:", data.results);
         const responseData =  data.results[0].formatted;
           return responseData.split('-')[0]
       } else {
@@ -62,10 +61,20 @@ export const useGetRestaurantLocation = (
 
 
 
-const useGetRestaurantwithoutLocation = async () => {
-    const getRestaraunt = async () => {
-      return  await axios.get(`${API_BASE_URL}/api/all-stores`).then((response)=>{
-            response.data
-        })
+
+export const useGetRestaurantwithoutLocation = () => {
+    const getRestaurants = async (): Promise<any> => {
+        const response = await axios.get(`${API_BASE_URL}/api/all-stores`);
+        return response.data;
+    }
+
+    const { data, isLoading } = useQuery({
+      queryKey: ["getRestaurentDetails"],
+      queryFn: getRestaurants
+    });
+
+    return {
+       restaurantsDetails : data,
+       isLoading
     }
 }

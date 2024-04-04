@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {
   useGetNearbyRestaurants,
   useGetRestaurantLocation,
+  useGetRestaurantwithoutLocation,
 } from "@/api/GetRestaurantApi";
 import { handleLocationClick } from "@/utils/getLocation";
 import { RestaurantCardSlider } from "./RestaurantCardSlider";
@@ -23,14 +24,16 @@ export const NearbyRestaurantListings = () => {
       // Get the geolocation
       const location = await handleLocationClick();
       setLocation(location);
-      location?getNearestRestaraunts(location):  //here get all res api   ;
-      getNearestRestaraunts(location);
+      location
+        ? getNearestRestaraunts(location) //here get all res api    ;
+        : getNearestRestaraunts(location);
     } catch (error) {
       console.error("Error fetching nearby restaurants:", error);
     }
   };
 
   const { getNearestRestaraunts, restaurants } = useGetNearbyRestaurants();
+  const { restaurantsDetails } = useGetRestaurantwithoutLocation();
   const { location } = useGetRestaurantLocation(
     locationn.latitude,
     locationn.longitude
@@ -39,17 +42,20 @@ export const NearbyRestaurantListings = () => {
     if (restaurants) {
       const data = JSON.parse(restaurants);
       setRestaurantsData(data.restaurants);
+    }else if ( restaurantsDetails) {
+      console.log("here",restaurantsDetails)
+      setRestaurantsData(restaurantsDetails.restaraunts)
     }
-  }, [restaurants]);
+  }, [restaurants,restaurantsDetails]);
 
   return (
     <div className="md:container">
-      <div >
+      <div>
         <h1 className="md:text-xl text-xs font-extrabold tracking-wide">
           All Restaurants Nearby
         </h1>{" "}
         <div className="flex mt-1  ">
-          <MapPin size='16' />
+          <MapPin size="16" />
           <p className=" align-middle tracking-widest ms-1 text-slate-500 text-xs  font-thin ">
             {location}
           </p>
