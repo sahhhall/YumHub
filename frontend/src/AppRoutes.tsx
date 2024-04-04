@@ -5,6 +5,7 @@ import { UserProfilePage } from "./pages/UserProfilePage";
 import { PrivateRoute } from "./routes/PrivateRoute";
 import { ExplorePage } from "./pages/ExplorePage";
 import { SearchPage } from "./pages/SearchPage";
+import { StoreDetailsPage } from "./components/RestaurantDetailPage/StoreDetailsPage";
 export const AppRoutes = () => {
   return (
     <>
@@ -22,6 +23,14 @@ export const AppRoutes = () => {
           element={
             <Layout>
               <ExplorePage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/restaurants/:restaurantname"
+          element={
+            <Layout>
+              <StoreDetailsPage />
             </Layout>
           }
         />
