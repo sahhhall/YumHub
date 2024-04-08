@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Cards } from "./Cards";
 import { useGetRestaurantwithoutLocation } from "@/api/GetRestaurantApi";
 import { TRestaurant } from "@/types/Restaurant";
+import { FilterOptions } from "./FilterOptions";
 
 export const RestaurantListContainer = () => {
   const [restaurantsData, setRestaurantsData] = useState<TRestaurant[]>([]);
@@ -19,7 +20,10 @@ export const RestaurantListContainer = () => {
           All Restaurants
         </h1>
       </div>
-      <div className="mt-7">
+      <div className="mt-2">
+        <FilterOptions />
+      </div>
+      <div className="mt-5">
         <Cards restaurantsData={restaurantsData} />
       </div>
     </div>
